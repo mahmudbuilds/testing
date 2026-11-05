@@ -49,6 +49,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Hotspot Pins on 3D Stage
+  document.querySelectorAll('.hotspot-pin[data-cam]').forEach((pin) => {
+    pin.addEventListener('click', () => {
+      const camKey = pin.dataset.cam;
+      if (scene) {
+        scene.setCameraView(camKey);
+        sound.playBeep(1200, 0.08);
+      }
+      camButtons.forEach((b) => {
+        b.classList.toggle('active', b.dataset.cam === camKey);
+      });
+    });
+  });
+
   // Wireframe Toggle
   const wireframeBtn = document.getElementById('btn-wireframe');
   if (wireframeBtn) {
