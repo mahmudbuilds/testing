@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AETHERIS DYNAMICS — Next-Gen Deep-Space Mobility & Orbital Logistics</title>
+  <meta name="description" content="Engineering the world's most advanced autonomous deep-space transport vehicles with sovereign solid-state magnetoplasmadynamic ion fusion. 10x higher delta-v efficiency." />
+  <meta property="og:title" content="AETHERIS DYNAMICS — Deep-Space Mobility" />
+  <meta property="og:description" content="Sovereign orbital infrastructure and autonomous deep-space transport systems." />
+  <meta name="theme-color" content="#08090c" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <!-- 3D WebGL Canvas Layer -->
+  <div id="canvas-container"></div>
+
+  <!-- Content Layer -->
+  <div class="content-wrapper">
+    <!-- Navigation Bar -->
+    <header class="navbar" id="navbar">
+      <a href="#" class="brand" aria-label="Aetheris Dynamics Homepage">
+        <svg class="brand-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 2"/>
+          <path d="M16 4L20 16L16 28L12 16L16 4Z" fill="currentColor"/>
+          <circle cx="16" cy="16" r="2.5" fill="#08090c"/>
+        </svg>
+        <span class="brand-name">Aetheris</span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="#vessel" data-view="orbit">01 // Vessel</a></li>
+          <li><a href="#technology" data-view="propulsion">02 // Propulsion</a></li>
+          <li><a href="#interactive-lab">03 // 3D Studio</a></li>
+          <li><a href="#simulator">04 // Simulator</a></li>
+          <li><a href="#specs">05 // Specifications</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="telemetry-status" title="Current Orbital State">
+          <span class="status-indicator"></span>
+          <span>LEO 420KM // 27.4K KM/H</span>
+        </div>
+
+        <button class="btn-sound" id="btn-sound" aria-label="Toggle Spacecraft Audio Synthesis" title="Toggle Sound FX">
+          <div class="sound-bars">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </button>
+
+        <button class="btn-primary" id="btn-open-modal">Reserve Slot</button>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="hero-section" id="vessel">
+        <div class="hero-content">
+          <div class="hero-tag">AETHERIS-X // AUTONOMOUS ORBITAL TRANSPORT</div>
+          <h1 class="hero-title">Beyond Atmosphere. Unbounded by Gravity.</h1>
+          <p class="hero-description">
+            Pioneering autonomous orbital logistics and deep-space transport with sovereign solid-state magnetoplasmadynamic ion fusion. 10x higher delta-v efficiency for commercial, scientific, and interplanetary payloads.
+          </p>
+          <div class="hero-actions">
+            <a href="#interactive-lab" class="btn-primary" id="hero-explore-btn">
+              Explore 3D Craft
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+            <a href="#simulator" class="btn-secondary">
+              Calculate Flight Delta-V
+            </a>
+          </div>
+        </div>
+
+        <!-- Telemetry Data Overlay -->
+        <div class="telemetry-grid">
+          <div class="telemetry-item">
+            <span class="telemetry-label">Vehicle Delta-V</span>
+            <span class="telemetry-value">14,800<span class="telemetry-unit">m/s</span></span>
+          </div>
+          <div class="telemetry-item">
+            <span class="telemetry-label">Payload to Mars</span>
+            <span class="telemetry-value">18,500<span class="telemetry-unit">kg</span></span>
+          </div>
+          <div class="telemetry-item">
+            <span class="telemetry-label">Specific Impulse</span>
+            <span class="telemetry-value">12,400<span class="telemetry-unit">s</span></span>
+          </div>
+          <div class="telemetry-item">
+            <span class="telemetry-label">Turnaround Reusability</span>
+            <span class="telemetry-value">100<span class="telemetry-unit">% Full Return</span></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Interactive 3D Lab Section -->
+      <section class="interactive-lab-section" id="interactive-lab">
+        <div class="lab-panel">
+          <div class="lab-header">
+            <div class="lab-title">
+              <span>●</span> Live 3D Telemetry Studio // Sovereign Mk IV
+            </div>
+            <div class="lab-controls-group">
+              <div class="camera-btn-group" role="group" aria-label="Camera Perspectives">
+                <button class="control-btn active" data-cam="orbit">Orbit</button>
+                <button class="control-btn" data-cam="avionics">Avionics</button>
+                <button class="control-btn" data-cam="propulsion">Thruster</button>
+                <button class="control-btn" data-cam="wings">Solar Wings</button>
+              </div>
+
+              <button class="toggle-btn" id="btn-wireframe" title="Toggle Holographic Wireframe View">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+                <span>Wireframe</span>
+              </button>
+
+              <button class="toggle-btn" id="btn-boost" title="Engage Full Afterburner Thrust">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                </svg>
+                <span>Throttle Boost</span>
+              </button>
+
+              <button class="toggle-btn" id="btn-lighting" title="Cycle Solar vs Deep Void Lighting">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="5"/>
+                  <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                </svg>
+                <span>Lighting</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="lab-viewport" id="lab-viewport">
+            <div class="viewport-hud">
+              <div class="hud-data-box">
+                ORIENTATION VECTOR
+                <strong id="hud-orientation">R: 0.04° P: -0.12° Y: 18.4°</strong>
+              </div>
+              <div class="hud-data-box" style="text-align: right;">
+                CORE STATUS
+                <strong id="hud-thrust-status" style="color: var(--accent-cyan);">MPD CRUISE // 42 kW</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Engineering Innovations (Features) -->
+      <section class="section-container" id="technology">
+        <div class="section-header">
+          <div class="section-tag">ENGINEERING FOUNDATIONS</div>
+          <h2 class="section-title">Architected for Interplanetary Longevity</h2>
+          <p class="section-subtitle">
+            Every subsystem is built to operate autonomously in harsh deep-space environments with zero servicing for up to 15 years.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-index">01 // PROPULSION</div>
+            <h3 class="feature-title">Solid-State MPD Ion Drive</h3>
+            <p class="feature-body">
+              Dual magnetoplasmadynamic accelerators delivering 12,400s specific impulse via sovereign xenon-krypton propellant matrix, enabling continuous high-efficiency acceleration.
+            </p>
+            <div class="feature-metrics">
+              <span class="feature-metric-label">Efficiency</span>
+              <span class="feature-metric-value">91.4% Plasma Yield</span>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-index">02 // MATERIALS</div>
+            <h3 class="feature-title">Titanium-Aerogel Monocoque</h3>
+            <p class="feature-body">
+              Ultra-lightweight structural fuselage integrating woven carbon nanotubes, titanium matrix alloys, and silica aerogel insulation to survive extreme radiative and thermal deltas.
+            </p>
+            <div class="feature-metrics">
+              <span class="feature-metric-label">Thermal Tolerance</span>
+              <span class="feature-metric-value">-210°C to +1,650°C</span>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-index">03 // AVIONICS</div>
+            <h3 class="feature-title">Autonomous Neural Guidance</h3>
+            <p class="feature-body">
+              Radiation-hardened optical star tracker and edge neural processor enabling sub-millimeter autonomous docking, debris collision avoidance, and deep-space celestial navigation.
+            </p>
+            <div class="feature-metrics">
+              <span class="feature-metric-label">Latency</span>
+              <span class="feature-metric-value">0.8ms Local Compute</span>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-index">04 // POWER</div>
+            <h3 class="feature-title">Deployable Crystalline Wings</h3>
+            <p class="feature-body">
+              Multi-junction gallium-arsenide photovoltaic ribbons with autonomous sun-tracking gimbals delivering 95 kW of continuous orbital power at 1 AU.
+            </p>
+            <div class="feature-metrics">
+              <span class="feature-metric-label">Power Density</span>
+              <span class="feature-metric-value">48.2% Cell Conversion</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mission Simulator & Payload Calculator -->
+      <section class="section-container" id="simulator">
+        <div class="section-header">
+          <div class="section-tag">MISSION ARCHITECTURE</div>
+          <h2 class="section-title">Interactive Payload & Trajectory Simulator</h2>
+          <p class="section-subtitle">
+            Configure your payload mass and target orbital regime to compute required delta-v, transit duration, and launch economics in real-time.
+          </p>
+        </div>
+
+        <div class="simulator-card">
+          <!-- Inputs Column -->
+          <div class="sim-inputs">
+            <div class="sim-input-group">
+              <div class="sim-input-header">
+                <label for="slider-payload" class="sim-label">Payload Mass</label>
+                <span class="sim-display-value" id="display-payload">6,500 kg</span>
+              </div>
+              <input type="range" id="slider-payload" class="range-slider" min="500" max="25000" step="250" value="6500" />
+            </div>
+
+            <div class="sim-input-group">
+              <div class="sim-input-header">
+                <label class="sim-label">Target Orbital Destination</label>
+              </div>
+              <div class="orbit-selector" role="radiogroup">
+                <button type="button" class="orbit-option-btn active" data-destination="leo">
+                  Low Earth Orbit (LEO)
+                  <span class="orbit-option-sub">400 km altitude // 0.1 days</span>
+                </button>
+                <button type="button" class="orbit-option-btn" data-destination="geo">
+                  Geostationary (GEO)
+                  <span class="orbit-option-sub">35,786 km // 1.2 days</span>
+                </button>
+                <button type="button" class="orbit-option-btn" data-destination="lunar">
+                  Lunar Gateway Orbit
+                  <span class="orbit-option-sub">384,400 km // 3.4 days</span>
+                </button>
+                <button type="button" class="orbit-option-btn" data-destination="mars">
+                  Mars Hohmann Injection
+                  <span class="orbit-option-sub">54.6M km // 118 days</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="sim-input-group">
+              <div class="sim-input-header">
+                <label for="select-window" class="sim-label">Launch Readiness Window</label>
+              </div>
+              <select id="select-window" class="form-select">
+                <option value="standard">Standard Slot (Q2 2027 // Best Efficiency)</option>
+                <option value="expedited">Expedited Priority (Q4 2026 // Dedicated Core)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Outputs Column -->
+          <div class="sim-output-panel">
+            <div>
+              <div class="output-metrics-grid">
+                <div class="output-metric">
+                  <span class="output-label">Required Mission Delta-V</span>
+                  <div class="output-val" id="res-delta-v">3,920<span>m/s</span></div>
+                </div>
+                <div class="output-metric">
+                  <span class="output-label">Estimated Transit Time</span>
+                  <div class="output-val" id="res-transit">2.4<span>hours</span></div>
+                </div>
+                <div class="output-metric">
+                  <span class="output-label">Specific Cost per Kg</span>
+                  <div class="output-val" id="res-cost-kg">$1,450<span>/kg</span></div>
+                </div>
+                <div class="output-metric">
+                  <span class="output-label">Total Mission Investment</span>
+                  <div class="output-val" id="res-total-cost">$9.42<span>M</span></div>
+                </div>
+              </div>
+            </div>
+
+            <button class="btn-primary" id="btn-book-from-sim" style="width: 100%; justify-content: center;">
+              Lock In Mission Manifest
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Technical Specifications Table -->
+      <section class="section-container" id="specs">
+        <div class="section-header">
+          <div class="section-tag">BENCHMARK DATA</div>
+          <h2 class="section-title">Fleet Specifications</h2>
+          <p class="section-subtitle">
+            Comparative performance parameters of the Aetheris Sovereign Mk IV platform against traditional chemical stages.
+          </p>
+        </div>
+
+        <div class="specs-table-wrapper">
+          <table class="specs-table">
+            <thead>
+              <tr>
+                <th>System Parameter</th>
+                <th>Aetheris Sovereign Mk IV</th>
+                <th>Standard Chemical Stage</th>
+                <th>Advantage Multiplier</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="parameter-name">Specific Impulse (Isp)</td>
+                <td class="highlight">12,400 seconds</td>
+                <td>450 seconds</td>
+                <td class="highlight">27.5x Efficiency</td>
+              </tr>
+              <tr>
+                <td class="parameter-name">Maximum Delta-V</td>
+                <td class="highlight">14,800 m/s</td>
+                <td>4,200 m/s</td>
+                <td class="highlight">3.5x Range</td>
+              </tr>
+              <tr>
+                <td class="parameter-name">Hull Structure</td>
+                <td>Carbon-Titanium Monocoque</td>
+                <td>Aluminum-Lithium Alloy</td>
+                <td>62% Weight Reduction</td>
+              </tr>
+              <tr>
+                <td class="parameter-name">Mission Reusability</td>
+                <td class="highlight">50+ Orbital Flights</td>
+                <td>Single Use / Expendable</td>
+                <td class="highlight">94% Cost Amortization</td>
+              </tr>
+              <tr>
+                <td class="parameter-name">Autonomous Docking Tolerance</td>
+                <td>± 0.5 mm</td>
+                <td>± 25 mm</td>
+                <td>50x Precision</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <!-- Site Footer -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div>
+          <a href="#" class="brand">
+            <svg class="brand-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 2"/>
+              <path d="M16 4L20 16L16 28L12 16L16 4Z" fill="currentColor"/>
+              <circle cx="16" cy="16" r="2.5" fill="#08090c"/>
+            </svg>
+            <span class="brand-name">Aetheris</span>
+          </a>
+          <p class="footer-brand-desc">
+            Architecting the permanent transportation fabric for lunar, orbital, and Martian commercial enterprise.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-heading">Architecture</div>
+          <ul class="footer-links">
+            <li><a href="#vessel">Sovereign Mk IV</a></li>
+            <li><a href="#technology">MPD Propulsion</a></li>
+            <li><a href="#interactive-lab">Flight Telemetry</a></li>
+            <li><a href="#simulator">Trajectory Calculator</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-heading">Spaceports</div>
+          <ul class="footer-links">
+            <li><a href="#">Vandenberg SLC-8</a></li>
+            <li><a href="#">Cape Canaveral LC-49</a></li>
+            <li><a href="#">Equatorial Sea Platform</a></li>
+            <li><a href="#">Lunar Gateway Station</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-heading">Security & Regulatory</div>
+          <ul class="footer-links">
+            <li><a href="#">FAA Part 450 License</a></li>
+            <li><a href="#">ITAR Compliant Protocols</a></li>
+            <li><a href="#">Orbital Debris Mitigation</a></li>
+            <li><a href="#">Telemetry API Docs</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Aetheris Dynamics Corp. All Rights Reserved.</div>
+        <div id="utc-clock">UTC TIME: 16:59:00 // SYSTEM STATUS: ALL GREEN</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Reservation Modal -->
+  <div class="modal-backdrop" id="modal-reservation" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h2 class="modal-title">Reserve Orbital Launch Slot</h2>
+        <button class="btn-close-modal" id="btn-close-modal" aria-label="Close dialog">×</button>
+      </div>
+
+      <form id="reservation-form">
+        <div class="form-group">
+          <label class="form-label" for="res-name">Organization / Mission Lead</label>
+          <input type="text" id="res-name" class="form-input" placeholder="e.g. Lunar Astrophysics Consortium" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="res-email">Comms Frequency / Email</label>
+          <input type="email" id="res-email" class="form-input" placeholder="mission-ops@consortium.space" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="res-target">Target Orbit</label>
+          <select id="res-target" class="form-select">
+            <option value="leo">Low Earth Orbit (LEO 400km)</option>
+            <option value="geo">Geostationary Transfer (GTO/GEO)</option>
+            <option value="lunar">Trans-Lunar Gateway Injection</option>
+            <option value="mars">Mars Deep-Space Trajectory</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="res-payload-mass">Payload Estimate (kg)</label>
+          <input type="number" id="res-payload-mass" class="form-input" value="6500" min="100" max="25000" />
+        </div>
+
+        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">
+          Transmit Mission Reservation
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Application Script -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
