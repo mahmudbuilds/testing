@@ -1,9 +1,12 @@
 # Aetheris Dynamics — Sovereign 3D Orbital Transport
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-GitHub_Pages-00F0FF?style=for-the-badge&logo=github)](https://mahmudbuilds.github.io/testing/)
 ![Three.js](https://img.shields.io/badge/Three.js-r187-black?style=flat-square&logo=three.js)
 ![Vite](https://img.shields.io/badge/Vite-v8.3-646CFF?style=flat-square&logo=vite)
 ![Web Audio API](https://img.shields.io/badge/Web%20Audio-Native%20Synth-00F0FF?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+
+> 🌐 **Live Website**: **[https://mahmudbuilds.github.io/testing/](https://mahmudbuilds.github.io/testing/)**
 
 An ultra-high-fidelity interactive 3D landing page and flight simulator for **Aetheris Dynamics**, pioneering autonomous deep-space transport and next-generation magnetoplasmadynamic (MPD) solid-state ion propulsion.
 
