@@ -1,495 +1,502 @@
 <!DOCTYPE html>
-<html lang="en" data-type="product" data-radius="soft" data-ground="sand" data-buttons="solid" data-motion>
+<html lang="en" data-type="service" data-radius="soft" data-ground="sand" data-buttons="solid" data-motion>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Aetheris Dynamics — Autonomous Deep-Space Transport & MPD Ion Propulsion</title>
-  <meta name="description" content="Engineering sovereign deep-space transport vehicles with solid-state magnetoplasmadynamic ion propulsion. 12,400s specific impulse and 10x higher delta-v efficiency." />
-  <meta name="site-kind" content="tech" />
-  <meta name="page-type" content="product" />
-  <meta property="og:title" content="Aetheris Dynamics — Autonomous Deep-Space Transport" />
-  <meta property="og:description" content="Sovereign orbital infrastructure and autonomous deep-space transport systems." />
-  <meta name="theme-color" content="#000000" />
+  <title>Marrow & Thyme — Farm-to-Table Dinner Delivery & Hearth Provisions</title>
+  <meta name="description" content="Chef-cooked seasonal dinners and organic hearth bakery provisions from 12 regenerative valley farms. Delivered warm to your table in 35 minutes in returnable containers." />
+  <meta name="site-kind" content="other" />
+  <meta name="page-type" content="service" />
+  <meta property="og:title" content="Marrow & Thyme — Farm-to-Table Dinner Delivery" />
+  <meta property="og:description" content="Seasonal dinners cooked fresh daily from organic local farms, delivered warm in zero-plastic insulated canisters." />
+  <meta name="theme-color" content="#f8f5ee" />
 
-  <!-- Google Fonts: Archivo (Display/Body) + Martian Mono (Telemetry) -->
+  <!-- Google Fonts: Fraunces (Display Serif) + Figtree (Body) + Martian Mono (Data) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..600&family=Martian+Mono:wght@400..500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..600,0..100,0..1&family=Martian+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/src/style.css" />
 </head>
 <body>
-  <!-- 3D WebGL Canvas Layer -->
-  <div id="canvas-container"></div>
-
-  <!-- Content Layer -->
-  <div class="content-wrapper">
-    <!-- Navigation Bar -->
-    <header class="navbar" id="navbar">
-      <div class="wrap">
-        <div class="navbar-inner">
-          <a href="#" class="brand" aria-label="Aetheris Dynamics Homepage">
-            <svg class="brand-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 2"/>
-              <path d="M16 4L20 16L16 28L12 16L16 4Z" fill="currentColor"/>
-              <circle cx="16" cy="16" r="2.5" fill="#000000"/>
-            </svg>
-            <span class="brand-name">Aetheris</span>
-          </a>
-
-          <nav aria-label="Main Navigation">
-            <ul class="nav-links">
-              <li><a href="#vessel" data-view="orbit">01 // Vessel</a></li>
-              <li><a href="#technology" data-view="propulsion">02 // Propulsion</a></li>
-              <li><a href="#interactive-lab">03 // 3D Studio</a></li>
-              <li><a href="#simulator">04 // Simulator</a></li>
-              <li><a href="#specs">05 // Specifications</a></li>
-            </ul>
-          </nav>
-
-          <div class="nav-actions">
-            <div class="telemetry-status" title="Current Orbital State">
-              <span class="status-indicator"></span>
-              <span>LEO 420KM // 27.4K KM/H</span>
-            </div>
-
-            <button class="btn-sound" id="btn-sound" aria-label="Toggle Spacecraft Audio Synthesis" title="Toggle Sound FX">
-              <div class="sound-bars">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-            </button>
-
-            <button class="btn-primary" id="btn-open-modal">Reserve Flight Slot</button>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <main>
-      <!-- Hero Section (One Section Per Screen) -->
-      <section class="hero-section" id="vessel">
-        <div class="wrap">
-          <div class="hero-content">
-            <div class="hero-tag">AETHERIS-X // AUTONOMOUS DEEP-SPACE TRANSPORT</div>
-            <h1 class="hero-title">Beyond Atmosphere. Unbounded by Gravity.</h1>
-            <p class="hero-description">
-              Engineering autonomous orbital logistics and deep-space transport vehicles with sovereign solid-state magnetoplasmadynamic ion fusion. 10x higher delta-v efficiency for commercial, scientific, and interplanetary payloads.
-            </p>
-            <div class="hero-actions">
-              <a href="#interactive-lab" class="btn-primary" id="hero-explore-btn">
-                Inspect 3D Vessel
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </a>
-              <a href="#simulator" class="btn-secondary">
-                Calculate Flight Delta-V
-              </a>
-            </div>
-          </div>
-
-          <!-- Telemetry Data Overlay -->
-          <div class="telemetry-grid">
-            <div class="telemetry-item">
-              <span class="telemetry-label">Mission Delta-V</span>
-              <span class="telemetry-value">14,800<span class="telemetry-unit">m/s</span></span>
-            </div>
-            <div class="telemetry-item">
-              <span class="telemetry-label">Payload to Mars</span>
-              <span class="telemetry-value">18,500<span class="telemetry-unit">kg</span></span>
-            </div>
-            <div class="telemetry-item">
-              <span class="telemetry-label">Specific Impulse</span>
-              <span class="telemetry-value">12,400<span class="telemetry-unit">s</span></span>
-            </div>
-            <div class="telemetry-item">
-              <span class="telemetry-label">Turnaround Reusability</span>
-              <span class="telemetry-value">100<span class="telemetry-unit">% Full Return</span></span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Interactive 3D Lab Section -->
-      <section class="interactive-lab-section" id="interactive-lab">
-        <div class="wrap">
-          <div class="lab-panel">
-            <div class="lab-header">
-              <div class="lab-title">
-                <span>●</span> Live Telemetry Studio // Sovereign Mk IV Stage
-              </div>
-              <div class="lab-controls-group">
-                <div class="camera-btn-group" role="group" aria-label="Camera Perspectives">
-                  <button class="control-btn active" data-cam="orbit">Orbit</button>
-                  <button class="control-btn" data-cam="avionics">Avionics</button>
-                  <button class="control-btn" data-cam="propulsion">Thruster Core</button>
-                  <button class="control-btn" data-cam="wings">Solar Array</button>
-                </div>
-
-                <button class="toggle-btn" id="btn-wireframe" title="Toggle Holographic Wireframe View">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                  </svg>
-                  <span>Wireframe</span>
-                </button>
-
-                <button class="toggle-btn" id="btn-boost" title="Engage Full Afterburner Thrust">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                  </svg>
-                  <span>Afterburner Boost</span>
-                </button>
-
-                <button class="toggle-btn" id="btn-lighting" title="Cycle Solar vs Deep Void Lighting">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="5"/>
-                    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-                  </svg>
-                  <span>Lighting Mode</span>
-                </button>
-              </div>
-            </div>
-
-            <div class="lab-viewport" id="lab-viewport">
-              <!-- Interactive Hotspots on the Stage -->
-              <div class="craft-hotspots">
-                <div class="hotspot-pin" style="top: 45%; left: 58%;" data-cam="avionics">
-                  <div class="hotspot-disc">01</div>
-                  <div class="hotspot-tooltip">Neural Avionics Tracker</div>
-                </div>
-                <div class="hotspot-pin" style="top: 40%; left: 32%;" data-cam="wings">
-                  <div class="hotspot-disc">02</div>
-                  <div class="hotspot-tooltip">Photovoltaic Array (95 kW)</div>
-                </div>
-                <div class="hotspot-pin" style="top: 52%; left: 78%;" data-cam="propulsion">
-                  <div class="hotspot-disc">03</div>
-                  <div class="hotspot-tooltip">Solid-State MPD Ion Core</div>
-                </div>
-              </div>
-
-              <div class="viewport-hud">
-                <div class="hud-data-box">
-                  ORIENTATION VECTOR
-                  <strong id="hud-orientation">R: 0.04° P: -0.12° Y: 18.4°</strong>
-                </div>
-                <div class="hud-data-box" style="text-align: right;">
-                  CORE TELEMETRY
-                  <strong id="hud-thrust-status" style="color: var(--p-accent);">MPD CRUISE // 42 kW</strong>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Engineering Innovations (Features) -->
-      <section class="section-container" id="technology">
-        <div class="wrap">
-          <div class="section-header">
-            <div class="section-tag">ENGINEERING FOUNDATIONS</div>
-            <h2 class="section-title">Architected for Interplanetary Longevity</h2>
-            <p class="section-subtitle">
-              Every critical subsystem is engineered to operate autonomously in harsh deep-space environments with zero servicing for up to 15 years.
-            </p>
-          </div>
-
-          <div class="features-grid">
-            <div class="feature-card">
-              <div class="feature-index">01 // PROPULSION</div>
-              <h3 class="feature-title">Solid-State MPD Ion Drive</h3>
-              <p class="feature-body">
-                Dual magnetoplasmadynamic accelerators delivering 12,400s specific impulse via sovereign xenon-krypton propellant matrix, enabling continuous high-efficiency acceleration.
-              </p>
-              <div class="feature-metrics">
-                <span class="feature-metric-label">Efficiency</span>
-                <span class="feature-metric-value">91.4% Plasma Yield</span>
-              </div>
-            </div>
-
-            <div class="feature-card">
-              <div class="feature-index">02 // MATERIALS</div>
-              <h3 class="feature-title">Titanium-Aerogel Monocoque</h3>
-              <p class="feature-body">
-                Ultra-lightweight structural fuselage integrating woven carbon nanotubes, titanium matrix alloys, and silica aerogel insulation to survive extreme radiative and thermal deltas.
-              </p>
-              <div class="feature-metrics">
-                <span class="feature-metric-label">Thermal Range</span>
-                <span class="feature-metric-value">-210°C to +1,650°C</span>
-              </div>
-            </div>
-
-            <div class="feature-card">
-              <div class="feature-index">03 // AVIONICS</div>
-              <h3 class="feature-title">Autonomous Neural Guidance</h3>
-              <p class="feature-body">
-                Radiation-hardened optical star tracker and edge neural processor enabling sub-millimeter autonomous docking, orbital rendezvous, and deep-space celestial navigation.
-              </p>
-              <div class="feature-metrics">
-                <span class="feature-metric-label">Latency</span>
-                <span class="feature-metric-value">0.8ms Local Compute</span>
-              </div>
-            </div>
-
-            <div class="feature-card">
-              <div class="feature-index">04 // POWER</div>
-              <h3 class="feature-title">Deployable Crystalline Wings</h3>
-              <p class="feature-body">
-                Multi-junction gallium-arsenide photovoltaic ribbons with autonomous sun-tracking gimbals delivering 95 kW of continuous orbital power at 1 AU.
-              </p>
-              <div class="feature-metrics">
-                <span class="feature-metric-label">Power Yield</span>
-                <span class="feature-metric-value">48.2% Conversion</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Mission Simulator & Payload Calculator -->
-      <section class="section-container" id="simulator">
-        <div class="wrap">
-          <div class="section-header">
-            <div class="section-tag">MISSION ARCHITECTURE</div>
-            <h2 class="section-title">Interactive Payload & Trajectory Simulator</h2>
-            <p class="section-subtitle">
-              Configure your payload mass and target orbital regime to compute required mission delta-v, transit duration, and launch economics in real-time.
-            </p>
-          </div>
-
-          <div class="simulator-card">
-            <!-- Inputs Column -->
-            <div class="sim-inputs">
-              <div class="sim-input-group">
-                <div class="sim-input-header">
-                  <label for="slider-payload" class="sim-label">Payload Mass</label>
-                  <span class="sim-display-value" id="display-payload">6,500 kg</span>
-                </div>
-                <input type="range" id="slider-payload" class="range-slider" min="500" max="25000" step="250" value="6500" />
-              </div>
-
-              <div class="sim-input-group">
-                <div class="sim-input-header">
-                  <span class="sim-label">Target Orbital Destination</span>
-                </div>
-                <div class="orbit-selector" role="radiogroup">
-                  <button type="button" class="orbit-option-btn active" data-destination="leo">
-                    Low Earth Orbit (LEO)
-                    <span class="orbit-option-sub">400 km altitude // 0.1 days</span>
-                  </button>
-                  <button type="button" class="orbit-option-btn" data-destination="geo">
-                    Geostationary (GEO)
-                    <span class="orbit-option-sub">35,786 km // 1.2 days</span>
-                  </button>
-                  <button type="button" class="orbit-option-btn" data-destination="lunar">
-                    Lunar Gateway Orbit
-                    <span class="orbit-option-sub">384,400 km // 3.4 days</span>
-                  </button>
-                  <button type="button" class="orbit-option-btn" data-destination="mars">
-                    Mars Hohmann Injection
-                    <span class="orbit-option-sub">54.6M km // 118 days</span>
-                  </button>
-                </div>
-              </div>
-
-              <div class="sim-input-group">
-                <div class="sim-input-header">
-                  <label for="select-window" class="sim-label">Launch Readiness Window</label>
-                </div>
-                <select id="select-window" class="form-select">
-                  <option value="standard">Standard Slot (Q2 2027 // Best Efficiency)</option>
-                  <option value="expedited">Expedited Priority (Q4 2026 // Dedicated Core)</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Outputs Column -->
-            <div class="sim-output-panel">
-              <div>
-                <div class="output-metrics-grid">
-                  <div class="output-metric">
-                    <span class="output-label">Required Mission Delta-V</span>
-                    <div class="output-val" id="res-delta-v">3,920<span>m/s</span></div>
-                  </div>
-                  <div class="output-metric">
-                    <span class="output-label">Estimated Transit Time</span>
-                    <div class="output-val" id="res-transit">2.4<span>hours</span></div>
-                  </div>
-                  <div class="output-metric">
-                    <span class="output-label">Specific Cost per Kg</span>
-                    <div class="output-val" id="res-cost-kg">$1,450<span>/kg</span></div>
-                  </div>
-                  <div class="output-metric">
-                    <span class="output-label">Total Mission Investment</span>
-                    <div class="output-val" id="res-total-cost">$9.42<span>M</span></div>
-                  </div>
-                </div>
-              </div>
-
-              <button class="btn-primary" id="btn-book-from-sim" style="width: 100%; justify-content: center;">
-                Lock In Mission Manifest
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Technical Specifications Table -->
-      <section class="section-container" id="specs">
-        <div class="wrap">
-          <div class="section-header">
-            <div class="section-tag">BENCHMARK DATA</div>
-            <h2 class="section-title">Fleet Specifications</h2>
-            <p class="section-subtitle">
-              Comparative performance parameters of the Aetheris Sovereign Mk IV platform against traditional chemical stages.
-            </p>
-          </div>
-
-          <div class="specs-table-wrapper">
-            <table class="specs-table">
-              <thead>
-                <tr>
-                  <th>System Parameter</th>
-                  <th>Aetheris Sovereign Mk IV</th>
-                  <th>Standard Chemical Stage</th>
-                  <th>Advantage Multiplier</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="parameter-name">Specific Impulse (Isp)</td>
-                  <td class="highlight">12,400 seconds</td>
-                  <td>450 seconds</td>
-                  <td class="highlight">27.5x Efficiency</td>
-                </tr>
-                <tr>
-                  <td class="parameter-name">Maximum Delta-V</td>
-                  <td class="highlight">14,800 m/s</td>
-                  <td>4,200 m/s</td>
-                  <td class="highlight">3.5x Range</td>
-                </tr>
-                <tr>
-                  <td class="parameter-name">Hull Structure</td>
-                  <td>Carbon-Titanium Monocoque</td>
-                  <td>Aluminum-Lithium Alloy</td>
-                  <td>62% Weight Reduction</td>
-                </tr>
-                <tr>
-                  <td class="parameter-name">Mission Reusability</td>
-                  <td class="highlight">50+ Orbital Flights</td>
-                  <td>Single Use / Expendable</td>
-                  <td class="highlight">94% Cost Amortization</td>
-                </tr>
-                <tr>
-                  <td class="parameter-name">Autonomous Docking Tolerance</td>
-                  <td>± 0.5 mm</td>
-                  <td>± 25 mm</td>
-                  <td>50x Precision</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- Site Footer -->
-    <footer class="site-footer">
-      <div class="wrap">
-        <div class="footer-inner">
-          <div>
-            <a href="#" class="brand">
-              <svg class="brand-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 2"/>
-                <path d="M16 4L20 16L16 28L12 16L16 4Z" fill="currentColor"/>
-                <circle cx="16" cy="16" r="2.5" fill="#000000"/>
-              </svg>
-              <span class="brand-name">Aetheris</span>
-            </a>
-            <p class="footer-brand-desc">
-              Architecting the permanent autonomous transportation fabric for lunar, orbital, and Martian commercial enterprise.
-            </p>
-          </div>
-
-          <div>
-            <div class="footer-heading">Architecture</div>
-            <ul class="footer-links">
-              <li><a href="#vessel">Sovereign Mk IV</a></li>
-              <li><a href="#technology">MPD Propulsion</a></li>
-              <li><a href="#interactive-lab">Flight Telemetry</a></li>
-              <li><a href="#simulator">Trajectory Calculator</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <div class="footer-heading">Spaceports</div>
-            <ul class="footer-links">
-              <li><a href="#">Vandenberg SLC-8</a></li>
-              <li><a href="#">Cape Canaveral LC-49</a></li>
-              <li><a href="#">Equatorial Sea Platform</a></li>
-              <li><a href="#">Lunar Gateway Station</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <div class="footer-heading">Compliance</div>
-            <ul class="footer-links">
-              <li><a href="#">FAA Part 450 License</a></li>
-              <li><a href="#">ITAR Compliant Protocols</a></li>
-              <li><a href="#">Orbital Debris Mitigation</a></li>
-              <li><a href="#">Telemetry API Docs</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="footer-bottom">
-          <div>Built with taste-skill 2.5 standards · MIT License · © 2026 Aetheris Dynamics Corp.</div>
-          <div id="utc-clock">UTC TIME: 17:15:00 // SYSTEM STATUS: ALL GREEN</div>
-        </div>
-      </div>
-    </footer>
-  </div>
-
-  <!-- Reservation Modal -->
-  <div class="modal-backdrop" id="modal-reservation" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="modal-box">
-      <div class="modal-header">
-        <h2 class="modal-title">Reserve Orbital Launch Slot</h2>
-        <button class="btn-close-modal" id="btn-close-modal" aria-label="Close dialog">×</button>
-      </div>
-
-      <form id="reservation-form">
-        <div class="form-group">
-          <label class="form-label" for="res-name">Organization / Mission Lead</label>
-          <input type="text" id="res-name" class="form-input" placeholder="e.g. Lunar Astrophysics Consortium" required />
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="res-email">Comms Frequency / Email</label>
-          <input type="email" id="res-email" class="form-input" placeholder="mission-ops@consortium.space" required />
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="res-target">Target Orbit</label>
-          <select id="res-target" class="form-select">
-            <option value="leo">Low Earth Orbit (LEO 400km)</option>
-            <option value="geo">Geostationary Transfer (GTO/GEO)</option>
-            <option value="lunar">Trans-Lunar Gateway Injection</option>
-            <option value="mars">Mars Deep-Space Trajectory</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="res-payload-mass">Payload Estimate (kg)</label>
-          <input type="number" id="res-payload-mass" class="form-input" value="6500" min="100" max="25000" />
-        </div>
-
-        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">
-          Transmit Flight Reservation
-        </button>
-      </form>
+  <!-- Top Dispatch Status Banner -->
+  <div class="top-bar">
+    <div class="wrap">
+      <span>● Central kitchen cooking now // Next courier dispatch in <strong>18 mins</strong> // Free zero-waste canister exchange</span>
     </div>
   </div>
 
-  <!-- Application Script -->
+  <!-- Header Navigation -->
+  <header class="navbar" id="navbar">
+    <div class="wrap">
+      <div class="navbar-inner">
+        <a href="#" class="brand" aria-label="Marrow and Thyme Homepage">
+          <svg class="brand-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M11 20A7 7 0 0 1 4 13C4 8 11 2 11 2s7 6 7 11a7 7 0 0 1-7 7Z"/>
+            <path d="M11 2v18"/>
+          </svg>
+          <span class="brand-name">Marrow &amp; Thyme</span>
+        </a>
+
+        <nav aria-label="Main Navigation">
+          <ul class="nav-links">
+            <li><a href="#menu">Daily Menu</a></li>
+            <li><a href="#courier">The Courier</a></li>
+            <li><a href="#bakery">Hearth Bakery</a></li>
+            <li><a href="#farms">Organic Growers</a></li>
+            <li><a href="#planner">Weekly Box</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-actions">
+          <button class="btn-bag" id="btn-open-bag" aria-label="Open Supper Bag">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+              <path d="M3 6h18"/>
+              <path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+            <span>Supper Box</span>
+            <span class="bag-count" id="bag-count">0</span>
+          </button>
+
+          <a href="#menu" class="btn-primary">Order Tonight</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section (One Section Per Screen) -->
+    <section class="hero-section" id="hero">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="hero-tag">SEASONAL PROVISIONS // VALLEY HARVEST</div>
+            <h1 class="hero-title">Seasonal dinner cooked by chefs, delivered in <em>35 minutes</em>.</h1>
+            <p class="hero-description">
+              We partner with twelve certified organic regenerative growers across the valley. Prepared from scratch daily at 4 PM in cast iron, delivered warm in returnable insulated ceramic containers.
+            </p>
+            <div class="hero-actions">
+              <a href="#menu" class="btn-primary">Build Tonight's Supper</a>
+              <a href="#planner" class="btn-secondary">Configure Weekly Box</a>
+            </div>
+
+            <div class="hero-proof">
+              <div class="proof-item">
+                <span class="proof-number">12</span>
+                <span class="proof-label">Valley organic farms</span>
+              </div>
+              <div class="proof-item">
+                <span class="proof-number">35m</span>
+                <span class="proof-label">Average courier time</span>
+              </div>
+              <div class="proof-item">
+                <span class="proof-number">0%</span>
+                <span class="proof-label">Single-use plastic</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="photo-frame">
+              <img src="/images/hero_dish.jpg" alt="Braised short rib with stoneground polenta" width="800" height="600" />
+              <div class="photo-badge">Tonight's Special: Angus Short Rib &amp; Creamy Polenta</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Daily Chef Menu & Add-To-Bag Section -->
+    <section class="section-container" id="menu">
+      <div class="wrap">
+        <div class="section-header">
+          <div>
+            <div class="section-tag">TODAY'S KITCHEN SUPPERS</div>
+            <h2 class="section-title">Cooked to Order for Tonight</h2>
+          </div>
+          <div class="menu-filter-bar" role="tablist">
+            <button class="filter-btn active" data-filter="all">All Items</button>
+            <button class="filter-btn" data-filter="suppers">Chef Suppers</button>
+            <button class="filter-btn" data-filter="hearth">Wood-Fired Hearth</button>
+            <button class="filter-btn" data-filter="garden">Field &amp; Garden</button>
+          </div>
+        </div>
+
+        <div class="menu-grid" id="menu-items-grid">
+          <!-- Item 1 -->
+          <article class="dish-card" data-category="suppers">
+            <div class="dish-meta">
+              <span class="dish-category">Chef Supper</span>
+              <span class="dish-price">$28</span>
+            </div>
+            <h3 class="dish-title">Braised Short Rib &amp; Polenta</h3>
+            <p class="dish-desc">
+              12-hour braised beef short rib in heritage red wine reduction, served over stoneground yellow polenta with Meyer lemon gremolata and glazed baby carrots.
+            </p>
+            <div class="dish-provenance">Willow Creek Ranch · Oakwood Organic Root Vegetables</div>
+            <button class="btn-add-dish" data-id="1" data-name="Braised Short Rib & Polenta" data-price="28">
+              <span>+ Add to Supper Box</span>
+            </button>
+          </article>
+
+          <!-- Item 2 -->
+          <article class="dish-card" data-category="hearth">
+            <div class="dish-meta">
+              <span class="dish-category">Hearth Bakery</span>
+              <span class="dish-price">$11</span>
+            </div>
+            <h3 class="dish-title">Cast-Iron Country Sourdough</h3>
+            <p class="dish-desc">
+              Stoneground Sonora wheat loaf, 36-hour cold-fermented with wild levain. Baked at 500°F with a blistering dark crust. Includes whipped sea-salt cultured butter.
+            </p>
+            <div class="dish-provenance">Sunstone Grain Mills · Valley Pasture Butter</div>
+            <button class="btn-add-dish" data-id="2" data-name="Cast-Iron Country Sourdough" data-price="11">
+              <span>+ Add to Supper Box</span>
+            </button>
+          </article>
+
+          <!-- Item 3 -->
+          <article class="dish-card" data-category="suppers">
+            <div class="dish-meta">
+              <span class="dish-category">Chef Supper</span>
+              <span class="dish-price">$24</span>
+            </div>
+            <h3 class="dish-title">Handmade Wild Chanterelle Tagliatelle</h3>
+            <p class="dish-desc">
+              Egg yolk ribbon pasta hand-extruded this morning, tossed with foraged chanterelle mushrooms, thyme brown butter, toasted hazelnuts, and aged mountain pecorino.
+            </p>
+            <div class="dish-provenance">Coastal Pine Forests · Pasture Bird Farm Eggs</div>
+            <button class="btn-add-dish" data-id="3" data-name="Wild Chanterelle Tagliatelle" data-price="24">
+              <span>+ Add to Supper Box</span>
+            </button>
+          </article>
+
+          <!-- Item 4 -->
+          <article class="dish-card" data-category="garden">
+            <div class="dish-meta">
+              <span class="dish-category">Field &amp; Garden</span>
+              <span class="dish-price">$16</span>
+            </div>
+            <h3 class="dish-title">Charred Romanesco &amp; Stracciatella</h3>
+            <p class="dish-desc">
+              Wood-fired romanesco florets over fresh hand-pulled stracciatella cheese, finished with toasted pistachio crumble and cold-pressed citrus oil.
+            </p>
+            <div class="dish-provenance">Greenleaf Farm Co-op · Sweet River Creamery</div>
+            <button class="btn-add-dish" data-id="4" data-name="Charred Romanesco & Stracciatella" data-price="16">
+              <span>+ Add to Supper Box</span>
+            </button>
+          </article>
+
+          <!-- Item 5 -->
+          <article class="dish-card" data-category="garden">
+            <div class="dish-meta">
+              <span class="dish-category">Field &amp; Garden</span>
+              <span class="dish-price">$14</span>
+            </div>
+            <h3 class="dish-title">Heirloom Tuscan Kale &amp; Radish Salad</h3>
+            <p class="dish-desc">
+              Tender shredded lacinato kale, crisp shaved watermelon radishes, pickled shallots, toasted sunflower seeds, and whole-grain mustard shallot vinaigrette.
+            </p>
+            <div class="dish-provenance">Oakwood Organic Farm · Valley Orchard Honey</div>
+            <button class="btn-add-dish" data-id="5" data-name="Tuscan Kale & Radish Salad" data-price="14">
+              <span>+ Add to Supper Box</span>
+            </button>
+          </article>
+
+          <!-- Item 6 -->
+          <article class="dish-card" data-category="hearth">
+            <div class="dish-meta">
+              <span class="dish-category">Hearth Bakery</span>
+              <span class="dish-price">$13</span>
+            </div>
+            <h3 class="dish-title">Poached Quince &amp; Mascarpone Tart</h3>
+            <p class="dish-desc">
+              Flaky butter pastry shell filled with vanilla-whipped local mascarpone and topped with spiced wine-poached quince and crushed candied walnuts.
+            </p>
+            <div class="dish-provenance">Highland Heritage Orchard · Sweet River Creamery</div>
+            <button class="btn-add-dish" data-id="6" data-name="Poached Quince Tart" data-price="13">
+              <span>+ Add to Supper Box</span>
+            </button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- The 3-Step Courier Delivery Architecture -->
+    <section class="section-container" id="courier" style="background: var(--p-surface);">
+      <div class="wrap">
+        <div class="section-header">
+          <div>
+            <div class="section-tag">ZERO WASTE LOGISTICS</div>
+            <h2 class="section-title">How Our Courier Works</h2>
+          </div>
+        </div>
+
+        <div class="process-grid">
+          <div class="process-step">
+            <div class="process-num">01</div>
+            <h3 class="process-title">Harvested at Dawn</h3>
+            <p class="process-body">
+              Greens, vegetables, and heritage grains are harvested every morning before 7 AM from our 12 regional growers. Nothing spends days in a commercial cold-chain warehouse.
+            </p>
+          </div>
+
+          <div class="process-step">
+            <div class="process-num">02</div>
+            <h3 class="process-title">Cooked to Order at 4 PM</h3>
+            <p class="process-body">
+              Our culinary team braises, roasts, and bakes each supper in French copper and seasoned cast iron. Meals are ladled directly into vacuum-insulated stoneware canisters.
+            </p>
+          </div>
+
+          <div class="process-step">
+            <div class="process-num">03</div>
+            <h3 class="process-title">Electric Trike Hand-off</h3>
+            <p class="process-body">
+              Delivered within 35 minutes by our dedicated courier fleet. Your meal arrives piping hot. When you order next, simply hand back the empty containers for sanitization.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visual Split Section: Hearth Bakery -->
+    <section class="split-section" id="bakery">
+      <div class="wrap">
+        <div class="split-grid">
+          <div class="split-visual">
+            <div class="photo-frame">
+              <img src="/images/sourdough.jpg" alt="Artisanal sourdough bread with cultured butter" width="800" height="600" />
+            </div>
+          </div>
+          <div class="split-content">
+            <div class="section-tag">NATURAL FERMENTATION</div>
+            <h2 class="section-title">Bread Baked for Digestion and Flavor</h2>
+            <p class="hero-description">
+              Commercial bread relies on fast synthetic yeast. Our loaves ferment for 36 hours using a wild levain culture started in 2018. The result is an open, custard-like crumb and caramelized blistered crust that is gentle on your gut.
+            </p>
+            <ul class="farm-list">
+              <li class="farm-item">
+                <div>
+                  <div class="farm-name">Sonora Heritage Wheat</div>
+                  <div class="farm-produce">Stoneground unbleached grain with germ intact</div>
+                </div>
+                <div class="farm-dist">Organic</div>
+              </li>
+              <li class="farm-item">
+                <div>
+                  <div class="farm-name">Wild Grassland Butter</div>
+                  <div class="farm-produce">Cultured 48 hours with Maldon sea salt flakes</div>
+                </div>
+                <div class="farm-dist">82% Butterfat</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visual Split Section: Organic Grower Network -->
+    <section class="split-section" id="farms" style="background: var(--p-surface);">
+      <div class="wrap">
+        <div class="split-grid reverse">
+          <div class="split-visual">
+            <div class="photo-frame">
+              <img src="/images/harvest_crate.jpg" alt="Crate of fresh organic harvest vegetables" width="800" height="600" />
+            </div>
+          </div>
+          <div class="split-content">
+            <div class="section-tag">THE GROWER NETWORK</div>
+            <h2 class="section-title">Know Exactly Where Your Supper Grew</h2>
+            <p class="hero-description">
+              Every dish on our menu credits the specific family farm that cultivated the ingredients. We pay our farmers 40% above commodity market prices to encourage regenerative soil practices.
+            </p>
+            <ul class="farm-list">
+              <li class="farm-item">
+                <div>
+                  <div class="farm-name">Oakwood Organic Farm</div>
+                  <div class="farm-produce">Heirloom tomatoes, Tuscan kale &amp; cold-pressed olive oil</div>
+                </div>
+                <div class="farm-dist">14 miles</div>
+              </li>
+              <li class="farm-item">
+                <div>
+                  <div class="farm-name">Willow Creek Pastures</div>
+                  <div class="farm-produce">100% grass-fed Angus beef &amp; heritage poultry</div>
+                </div>
+                <div class="farm-dist">22 miles</div>
+              </li>
+              <li class="farm-item">
+                <div>
+                  <div class="farm-name">Sweet River Creamery</div>
+                  <div class="farm-produce">Pasture-grazed stracciatella, raw butter &amp; curd</div>
+                </div>
+                <div class="farm-dist">18 miles</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Weekly Supper Box Planner -->
+    <section class="section-container" id="planner">
+      <div class="wrap">
+        <div class="section-header">
+          <div>
+            <div class="section-tag">CUSTOM SUBSCRIPTION</div>
+            <h2 class="section-title">Configure Your Weekly Supper Box</h2>
+            <p class="hero-description" style="margin-bottom: 0;">
+              Select your household size and how many evenings you'd like chef-cooked dinners delivered warm.
+            </p>
+          </div>
+        </div>
+
+        <div class="planner-card">
+          <div class="planner-inputs">
+            <div class="planner-group">
+              <span class="planner-label">Household Size</span>
+              <div class="btn-pill-group" id="group-diners" role="radiogroup">
+                <button type="button" class="pill-option-btn active" data-diners="2">1–2 Diners</button>
+                <button type="button" class="pill-option-btn" data-diners="4">3–4 Family</button>
+                <button type="button" class="pill-option-btn" data-diners="6">5+ Feast</button>
+              </div>
+            </div>
+
+            <div class="planner-group">
+              <span class="planner-label">Deliveries Per Week</span>
+              <div class="btn-pill-group" id="group-nights" role="radiogroup">
+                <button type="button" class="pill-option-btn active" data-nights="3">3 Evenings</button>
+                <button type="button" class="pill-option-btn" data-nights="4">4 Evenings</button>
+                <button type="button" class="pill-option-btn" data-nights="5">5 Evenings</button>
+              </div>
+            </div>
+
+            <div class="planner-group">
+              <span class="planner-label">Dietary Preference</span>
+              <div class="btn-pill-group" id="group-diet" role="radiogroup">
+                <button type="button" class="pill-option-btn active" data-diet="omnivore">Chef's Table (Omnivore)</button>
+                <button type="button" class="pill-option-btn" data-diet="vegetarian">Field Harvest (Vegetarian)</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="planner-summary-panel">
+            <div>
+              <div class="summary-price-box">
+                <div class="summary-per-serving" id="summary-price">$19<span>/ plate</span></div>
+              </div>
+              <ul class="summary-rows">
+                <li class="summary-row">
+                  <span id="summary-meals-count">6 portions per week</span>
+                  <span id="summary-meals-subtotal">$114.00</span>
+                </li>
+                <li class="summary-row">
+                  <span>Returnable canister deposit</span>
+                  <span style="color: var(--p-accent);">Waived (Free)</span>
+                </li>
+                <li class="summary-row">
+                  <span>Electric courier delivery</span>
+                  <span style="color: var(--p-accent);">Included</span>
+                </li>
+                <li class="summary-row total">
+                  <span>Weekly Total</span>
+                  <span id="summary-weekly-total">$114.00</span>
+                </li>
+              </ul>
+            </div>
+
+            <button class="btn-primary" id="btn-lock-plan" style="width: 100%; justify-content: center; margin-top: 2rem;">
+              Start Weekly Supper Plan
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Slide-Over Supper Bag / Cart Drawer -->
+  <div class="cart-drawer-backdrop" id="cart-drawer-backdrop" aria-hidden="true">
+    <div class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title-text">
+      <div class="cart-header">
+        <h3 class="cart-title" id="cart-title-text">Tonight's Supper Box</h3>
+        <button class="btn-close-cart" id="btn-close-cart" aria-label="Close box">×</button>
+      </div>
+
+      <div class="cart-body" id="cart-body">
+        <div class="cart-empty-msg" id="cart-empty-msg">Your supper box is empty.<br>Browse the menu to add chef-cooked dishes.</div>
+        <div id="cart-items-list"></div>
+      </div>
+
+      <div class="cart-footer">
+        <div class="cart-subtotal-row">
+          <span>Subtotal</span>
+          <span id="cart-subtotal">$0.00</span>
+        </div>
+        <button class="btn-primary" id="btn-checkout" style="width: 100%; justify-content: center;">
+          Proceed to Delivery Dispatch
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-inner">
+        <div>
+          <a href="#" class="brand" style="color: #ffffff;">
+            <svg class="brand-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M11 20A7 7 0 0 1 4 13C4 8 11 2 11 2s7 6 7 11a7 7 0 0 1-7 7Z"/>
+              <path d="M11 2v18"/>
+            </svg>
+            <span class="brand-name">Marrow &amp; Thyme</span>
+          </a>
+          <p class="footer-brand-desc">
+            Farm-to-table culinary delivery network. Prepared from scratch daily and dispatched in zero-plastic insulated returnable containers.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-heading">Provisions</div>
+          <ul class="footer-links">
+            <li><a href="#menu">Tonight's Menu</a></li>
+            <li><a href="#bakery">Sonora Sourdough</a></li>
+            <li><a href="#farms">Organic Growers</a></li>
+            <li><a href="#planner">Supper Subscriptions</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-heading">Kitchens &amp; Zones</div>
+          <ul class="footer-links">
+            <li><a href="#">Downtown Commissary</a></li>
+            <li><a href="#">West Valley Hearth</a></li>
+            <li><a href="#">East Hills Dispatch</a></li>
+            <li><a href="#">Delivery Zone Map</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-heading">Care &amp; Quality</div>
+          <ul class="footer-links">
+            <li><a href="#">Canister Return Protocol</a></li>
+            <li><a href="#">Dietary &amp; Allergens</a></li>
+            <li><a href="#">Regenerative Standards</a></li>
+            <li><a href="#">Contact Kitchen Ops</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>Built with taste-skill 2.5 standards · MIT License · © 2026 Marrow &amp; Thyme Co.</div>
+        <div>Kitchen Hours: 4:00 PM – 9:30 PM Daily · Local Courier Service</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic -->
   <script type="module" src="/src/main.js"></script>
 </body>
 </html>

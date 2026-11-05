@@ -1,294 +1,204 @@
-import { SpaceScene } from './scene.js';
-import { sound } from './audio.js';
-
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Initialize Three.js 3D Scene
-  const canvasContainer = document.getElementById('canvas-container');
-  let scene = null;
+  // 1. Live Supper Box Cart State
+  const cart = [];
+  const bagCount = document.getElementById('bag-count');
+  const cartDrawerBackdrop = document.getElementById('cart-drawer-backdrop');
+  const btnOpenBag = document.getElementById('btn-open-bag');
+  const btnCloseCart = document.getElementById('btn-close-cart');
+  const cartItemsList = document.getElementById('cart-items-list');
+  const cartEmptyMsg = document.getElementById('cart-empty-msg');
+  const cartSubtotal = document.getElementById('cart-subtotal');
+  const btnCheckout = document.getElementById('btn-checkout');
 
-  try {
-    scene = new SpaceScene(canvasContainer);
-  } catch (err) {
-    console.error('Failed to initialize 3D scene:', err);
-  }
+  function updateCartUI() {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    bagCount.textContent = totalItems;
 
-  // 2. Audio Controller Integration
-  const soundBtn = document.getElementById('btn-sound');
-  if (soundBtn) {
-    soundBtn.addEventListener('click', () => {
-      const isAudible = sound.toggleMute();
-      if (isAudible) {
-        soundBtn.classList.add('active');
-        sound.playBeep(980, 0.08);
-      } else {
-        soundBtn.classList.remove('active');
-      }
+    if (cart.length === 0) {
+      cartEmptyMsg.style.display = 'block';
+      cartItemsList.innerHTML = '';
+      cartSubtotal.textContent = '$0.00';
+      return;
+    }
+
+    cartEmptyMsg.style.display = 'none';
+    cartItemsList.innerHTML = '';
+
+    let subtotal = 0;
+    cart.forEach((item, index) => {
+      subtotal += item.price * item.quantity;
+      const row = document.createElement('div');
+      row.className = 'cart-item';
+      row.innerHTML = `
+        <div class="cart-item-info">
+          <h4>${item.name}</h4>
+          <span>$${item.price}.00 × ${item.quantity}</span>
+        </div>
+        <div class="cart-item-actions">
+          <button class="btn-remove-item" data-index="${index}" aria-label="Remove ${item.name}">Remove</button>
+        </div>
+      `;
+      cartItemsList.appendChild(row);
+    });
+
+    cartSubtotal.textContent = `$${subtotal.toFixed(2)}`;
+
+    // Attach remove listeners
+    document.querySelectorAll('.btn-remove-item').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        const idx = parseInt(e.target.dataset.index, 10);
+        cart.splice(idx, 1);
+        updateCartUI();
+      });
     });
   }
 
-  // Add click sound effects to all buttons
-  document.querySelectorAll('button, a.btn-primary, a.btn-secondary').forEach((elem) => {
-    elem.addEventListener('mouseenter', () => {
-      sound.playBeep(1400, 0.03);
-    });
-    elem.addEventListener('click', () => {
-      sound.playClick();
-    });
-  });
+  // Open/Close Cart Drawer
+  function openCart() {
+    if (cartDrawerBackdrop) {
+      cartDrawerBackdrop.classList.add('open');
+      cartDrawerBackdrop.setAttribute('aria-hidden', 'false');
+    }
+  }
 
-  // 3. Interactive 3D Lab Controls
-  const camButtons = document.querySelectorAll('.control-btn[data-cam]');
-  camButtons.forEach((btn) => {
+  function closeCart() {
+    if (cartDrawerBackdrop) {
+      cartDrawerBackdrop.classList.remove('open');
+      cartDrawerBackdrop.setAttribute('aria-hidden', 'true');
+    }
+  }
+
+  if (btnOpenBag) btnOpenBag.addEventListener('click', openCart);
+  if (btnCloseCart) btnCloseCart.addEventListener('click', closeCart);
+  if (cartDrawerBackdrop) {
+    cartDrawerBackdrop.addEventListener('click', (e) => {
+      if (e.target === cartDrawerBackdrop) closeCart();
+    });
+  }
+
+  // Add Dish to Box
+  document.querySelectorAll('.btn-add-dish').forEach((btn) => {
     btn.addEventListener('click', () => {
-      camButtons.forEach((b) => b.classList.remove('active'));
-      btn.classList.add('active');
-      const camKey = btn.dataset.cam;
-      if (scene) {
-        scene.setCameraView(camKey);
+      const id = btn.dataset.id;
+      const name = btn.dataset.name;
+      const price = parseFloat(btn.dataset.price);
+
+      const existing = cart.find((item) => item.id === id);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ id, name, price, quantity: 1 });
       }
+
+      updateCartUI();
+
+      // Button feedback
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<span>✓ Added to Supper Box</span>';
+      btn.style.background = 'var(--p-accent)';
+      btn.style.color = '#ffffff';
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.style.background = '';
+        btn.style.color = '';
+      }, 1000);
     });
   });
 
-  // Hotspot Pins on 3D Stage
-  document.querySelectorAll('.hotspot-pin[data-cam]').forEach((pin) => {
-    pin.addEventListener('click', () => {
-      const camKey = pin.dataset.cam;
-      if (scene) {
-        scene.setCameraView(camKey);
-        sound.playBeep(1200, 0.08);
+  // Checkout action
+  if (btnCheckout) {
+    btnCheckout.addEventListener('click', () => {
+      if (cart.length === 0) {
+        alert('Your supper box is currently empty. Add dishes from the menu to proceed.');
+        return;
       }
-      camButtons.forEach((b) => {
-        b.classList.toggle('active', b.dataset.cam === camKey);
+      alert('Order Confirmed!\n\nYour farm-to-table dinner has been sent to our central kitchen. The culinary team is preparing your dishes now.\n\nEstimated courier hand-off: 32 minutes in returnable insulated containers.');
+      cart.length = 0;
+      updateCartUI();
+      closeCart();
+    });
+  }
+
+  // 2. Menu Category Filtering
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const dishCards = document.querySelectorAll('.dish-card');
+
+  filterButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      filterButtons.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+      dishCards.forEach((card) => {
+        if (filter === 'all' || card.dataset.category === filter) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
       });
     });
   });
 
-  // Wireframe Toggle
-  const wireframeBtn = document.getElementById('btn-wireframe');
-  if (wireframeBtn) {
-    wireframeBtn.addEventListener('click', () => {
-      if (scene) {
-        const active = scene.toggleWireframe();
-        wireframeBtn.classList.toggle('active', active);
-        sound.playBeep(active ? 1100 : 700, 0.06);
-      }
-    });
+  // 3. Interactive Weekly Supper Box Planner
+  const dinerButtons = document.querySelectorAll('#group-diners .pill-option-btn');
+  const nightButtons = document.querySelectorAll('#group-nights .pill-option-btn');
+  const dietButtons = document.querySelectorAll('#group-diet .pill-option-btn');
+
+  const summaryPrice = document.getElementById('summary-price');
+  const summaryMealsCount = document.getElementById('summary-meals-count');
+  const summaryMealsSubtotal = document.getElementById('summary-meals-subtotal');
+  const summaryWeeklyTotal = document.getElementById('summary-weekly-total');
+  const btnLockPlan = document.getElementById('btn-lock-plan');
+
+  let selectedDiners = 2;
+  let selectedNights = 3;
+
+  function updatePlanner() {
+    let pricePerPlate = 19;
+    if (selectedDiners === 4) pricePerPlate = 17;
+    if (selectedDiners === 6) pricePerPlate = 15;
+
+    const totalPortions = selectedDiners * selectedNights;
+    const weeklyTotal = totalPortions * pricePerPlate;
+
+    summaryPrice.innerHTML = `$${pricePerPlate}<span>/ plate</span>`;
+    summaryMealsCount.textContent = `${totalPortions} portions (${selectedDiners} diners × ${selectedNights} nights)`;
+    summaryMealsSubtotal.textContent = `$${weeklyTotal.toFixed(2)}`;
+    summaryWeeklyTotal.textContent = `$${weeklyTotal.toFixed(2)}`;
   }
 
-  // Throttle Boost
-  const boostBtn = document.getElementById('btn-boost');
-  const hudThrustStatus = document.getElementById('hud-thrust-status');
-  let isBoostActive = false;
-
-  if (boostBtn) {
-    boostBtn.addEventListener('click', () => {
-      isBoostActive = !isBoostActive;
-      boostBtn.classList.toggle('active', isBoostActive);
-
-      if (scene) {
-        scene.setEngineBoost(isBoostActive);
-      }
-      sound.setEngineBoost(isBoostActive);
-
-      if (hudThrustStatus) {
-        if (isBoostActive) {
-          hudThrustStatus.textContent = 'MPD AFTERBURNER // 128 kW [FULL ION FLOW]';
-          hudThrustStatus.style.color = '#f59e0b';
-        } else {
-          hudThrustStatus.textContent = 'MPD CRUISE // 42 kW';
-          hudThrustStatus.style.color = 'var(--accent-cyan)';
-        }
-      }
-    });
-  }
-
-  // Lighting Mode Toggle
-  const lightingBtn = document.getElementById('btn-lighting');
-  if (lightingBtn) {
-    lightingBtn.addEventListener('click', () => {
-      if (scene) {
-        const mode = scene.toggleLighting();
-        lightingBtn.classList.toggle('active', mode === 'deep');
-        sound.playBeep(mode === 'deep' ? 600 : 900, 0.06);
-      }
-    });
-  }
-
-  // Live HUD orientation telemetry loop
-  const hudOrientation = document.getElementById('hud-orientation');
-  if (hudOrientation && scene) {
-    setInterval(() => {
-      if (scene.shipGroup) {
-        const rotX = (scene.shipGroup.rotation.x * (180 / Math.PI)).toFixed(1);
-        const rotY = (scene.shipGroup.rotation.y * (180 / Math.PI)).toFixed(1);
-        const rotZ = (scene.shipGroup.rotation.z * (180 / Math.PI)).toFixed(1);
-        hudOrientation.textContent = `R: ${rotZ}° P: ${rotX}° Y: ${rotY}°`;
-      }
-    }, 100);
-  }
-
-  // 4. Mission Simulator & Payload Calculator
-  const sliderPayload = document.getElementById('slider-payload');
-  const displayPayload = document.getElementById('display-payload');
-  const orbitOptions = document.querySelectorAll('.orbit-option-btn');
-  const selectWindow = document.getElementById('select-window');
-
-  const resDeltaV = document.getElementById('res-delta-v');
-  const resTransit = document.getElementById('res-transit');
-  const resCostKg = document.getElementById('res-cost-kg');
-  const resTotalCost = document.getElementById('res-total-cost');
-
-  let currentDestination = 'leo';
-
-  const destinationData = {
-    leo: { deltaV: 3920, transitHours: 2.4, baseCostKg: 1450 },
-    geo: { deltaV: 7850, transitHours: 28.5, baseCostKg: 2200 },
-    lunar: { deltaV: 11400, transitHours: 82.0, baseCostKg: 3800 },
-    mars: { deltaV: 14800, transitHours: 2832.0, baseCostKg: 6900 }
-  };
-
-  function updateSimulation() {
-    const payload = parseInt(sliderPayload.value, 10);
-    displayPayload.textContent = `${payload.toLocaleString()} kg`;
-
-    const data = destinationData[currentDestination];
-    const isExpedited = selectWindow.value === 'expedited';
-    const multiplier = isExpedited ? 1.35 : 1.0;
-
-    // Delta V formula
-    const finalDeltaV = Math.round(data.deltaV * (1 + (payload / 25000) * 0.15));
-
-    // Transit duration display
-    let transitStr = '';
-    if (data.transitHours >= 48) {
-      const days = (data.transitHours / 24).toFixed(1);
-      transitStr = `${days}<span>days</span>`;
-    } else {
-      transitStr = `${data.transitHours.toFixed(1)}<span>hours</span>`;
-    }
-
-    // Cost calculations
-    const costPerKg = Math.round(data.baseCostKg * multiplier);
-    const totalM = ((payload * costPerKg) / 1000000).toFixed(2);
-
-    resDeltaV.innerHTML = `${finalDeltaV.toLocaleString()}<span>m/s</span>`;
-    resTransit.innerHTML = transitStr;
-    resCostKg.innerHTML = `$${costPerKg.toLocaleString()}<span>/kg</span>`;
-    resTotalCost.innerHTML = `$${totalM}<span>M</span>`;
-  }
-
-  if (sliderPayload) {
-    sliderPayload.addEventListener('input', updateSimulation);
-  }
-
-  orbitOptions.forEach((btn) => {
+  dinerButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
-      orbitOptions.forEach((b) => b.classList.remove('active'));
+      dinerButtons.forEach((b) => b.classList.remove('active'));
       btn.classList.add('active');
-      currentDestination = btn.dataset.destination;
-      updateSimulation();
-      sound.playBeep(850, 0.05);
+      selectedDiners = parseInt(btn.dataset.diners, 10);
+      updatePlanner();
     });
   });
 
-  if (selectWindow) {
-    selectWindow.addEventListener('change', updateSimulation);
-  }
-
-  // 5. Scroll-based Camera Choreography
-  const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.4
-  };
-
-  const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting && scene) {
-        const id = entry.target.id;
-        if (id === 'vessel') {
-          scene.setCameraView('orbit');
-        } else if (id === 'technology') {
-          scene.setCameraView('propulsion');
-        } else if (id === 'simulator') {
-          scene.setCameraView('wings');
-        } else if (id === 'specs') {
-          scene.setCameraView('avionics');
-        }
-      }
-    });
-  }, observerOptions);
-
-  document.querySelectorAll('section').forEach((section) => {
-    sectionObserver.observe(section);
-  });
-
-  // Nav link smooth trigger
-  document.querySelectorAll('.nav-links a[data-view]').forEach((link) => {
-    link.addEventListener('click', (e) => {
-      const viewKey = link.dataset.view;
-      if (scene && viewKey) {
-        scene.setCameraView(viewKey);
-      }
+  nightButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      nightButtons.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      selectedNights = parseInt(btn.dataset.nights, 10);
+      updatePlanner();
     });
   });
 
-  // 6. Reservation Modal
-  const modal = document.getElementById('modal-reservation');
-  const openModalBtn = document.getElementById('btn-open-modal');
-  const closeModalBtn = document.getElementById('btn-close-modal');
-  const bookFromSimBtn = document.getElementById('btn-book-from-sim');
-  const reservationForm = document.getElementById('reservation-form');
-  const resPayloadMassInput = document.getElementById('res-payload-mass');
+  dietButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      dietButtons.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
 
-  function openModal() {
-    if (modal) {
-      modal.classList.add('open');
-      modal.setAttribute('aria-hidden', 'false');
-      if (resPayloadMassInput && sliderPayload) {
-        resPayloadMassInput.value = sliderPayload.value;
-      }
-    }
-  }
-
-  function closeModal() {
-    if (modal) {
-      modal.classList.remove('open');
-      modal.setAttribute('aria-hidden', 'true');
-    }
-  }
-
-  if (openModalBtn) openModalBtn.addEventListener('click', openModal);
-  if (bookFromSimBtn) bookFromSimBtn.addEventListener('click', openModal);
-  if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
-
-  if (modal) {
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeModal();
+  if (btnLockPlan) {
+    btnLockPlan.addEventListener('click', () => {
+      alert(`Weekly Supper Plan Configured!\n\n${selectedDiners} Diners · ${selectedNights} Evenings Per Week.\nYour initial delivery schedule will begin this Tuesday with zero-waste canister exchange.`);
     });
   }
 
-  if (reservationForm) {
-    reservationForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      sound.playBeep(1200, 0.15);
-      const name = document.getElementById('res-name').value;
-      alert(`[TRANSMISSION CONFIRMED]\n\nPayload flight reservation manifest received for: ${name}.\nTelemetry credentials dispatched to secure comms.`);
-      closeModal();
-      reservationForm.reset();
-    });
-  }
-
-  // 7. UTC Clock in Footer
-  const utcClock = document.getElementById('utc-clock');
-  function updateClock() {
-    if (!utcClock) return;
-    const now = new Date();
-    const h = String(now.getUTCHours()).padStart(2, '0');
-    const m = String(now.getUTCMinutes()).padStart(2, '0');
-    const s = String(now.getUTCSeconds()).padStart(2, '0');
-    utcClock.textContent = `UTC TIME: ${h}:${m}:${s} // SYSTEM STATUS: ALL GREEN`;
-  }
-  setInterval(updateClock, 1000);
-  updateClock();
+  // Initial calculation
+  updatePlanner();
+  updateCartUI();
 });

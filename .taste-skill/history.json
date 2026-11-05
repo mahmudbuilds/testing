@@ -1,13 +1,21 @@
 {
   "palettes": [
-    "candy-on-black"
+    "candy-on-black",
+    "green-mat-chocolate"
   ],
   "types": [
-    "archivo"
+    "archivo",
+    "fraunces"
   ],
   "dealt": [
     "sora",
     "plex",
-    "archivo"
+    "archivo",
+    "hanken",
+    "gabarito",
+    "figtree",
+    "fraunces",
+    "red-hat",
+    "zilla"
   ]
 }
