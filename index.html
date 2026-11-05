@@ -3,26 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Marrow & Thyme — Farm-to-Table Dinner Delivery & Hearth Provisions</title>
-  <meta name="description" content="Chef-cooked seasonal dinners and organic hearth bakery provisions from 12 regenerative valley farms. Delivered warm to your table in 35 minutes in returnable containers." />
+  <title>Búkà &amp; Palm — Authentic Nigerian Party Jollof &amp; Soul Supper Delivery</title>
+  <meta name="description" content="Firewood party jollof rice, slow-braised egusi soup with pounded yam, and charcoal Lagos suya. Cooked from scratch and delivered piping hot in 30 minutes." />
   <meta name="site-kind" content="other" />
   <meta name="page-type" content="service" />
-  <meta property="og:title" content="Marrow & Thyme — Farm-to-Table Dinner Delivery" />
-  <meta property="og:description" content="Seasonal dinners cooked fresh daily from organic local farms, delivered warm in zero-plastic insulated canisters." />
-  <meta name="theme-color" content="#f8f5ee" />
+  <meta property="og:title" content="Búkà &amp; Palm — Authentic Nigerian Food Delivery" />
+  <meta property="og:description" content="Authentic slow-cooked Nigerian feast dinners & Lagos street delicacies delivered piping hot in 30 minutes." />
+  <meta name="theme-color" content="#faf7f2" />
 
   <!-- Google Fonts: Fraunces (Display Serif) + Figtree (Body) + Martian Mono (Data) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..600,0..100,0..1&family=Martian+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..700,0..100,0..1&family=Martian+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/src/style.css" />
 </head>
 <body>
+  <!-- Scroll Progress Indicator -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
   <!-- Top Dispatch Status Banner -->
   <div class="top-bar">
     <div class="wrap">
-      <span>● Central kitchen cooking now // Next courier dispatch in <strong>18 mins</strong> // Free zero-waste canister exchange</span>
+      <span>● BÚKÀ KITCHEN LIVE // Next dispatch in <strong>14 mins</strong> // 100% hot-tiffin zero-plastic delivery</span>
     </div>
   </div>
 
@@ -30,266 +33,293 @@
   <header class="navbar" id="navbar">
     <div class="wrap">
       <div class="navbar-inner">
-        <a href="#" class="brand" aria-label="Marrow and Thyme Homepage">
-          <svg class="brand-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M11 20A7 7 0 0 1 4 13C4 8 11 2 11 2s7 6 7 11a7 7 0 0 1-7 7Z"/>
-            <path d="M11 2v18"/>
+        <a href="#" class="brand" aria-label="Búkà and Palm Homepage">
+          <svg class="brand-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 2C8.268 2 2 8.268 2 16s6.268 14 14 14 14-6.268 14-14S23.732 2 16 2Z" fill="#c2410c" fill-opacity="0.12"/>
+            <path d="M16 6v20M8 12c4 0 8 4 8 4s4-4 8-4M9 20c3.5 0 7 2 7 2s3.5-2 7-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
-          <span class="brand-name">Marrow &amp; Thyme</span>
+          <span class="brand-name">Búkà <span>&amp;</span> Palm</span>
         </a>
 
         <nav aria-label="Main Navigation">
           <ul class="nav-links">
-            <li><a href="#menu">Daily Menu</a></li>
-            <li><a href="#courier">The Courier</a></li>
-            <li><a href="#bakery">Hearth Bakery</a></li>
-            <li><a href="#farms">Organic Growers</a></li>
-            <li><a href="#planner">Weekly Box</a></li>
+            <li><a href="#menu">Daily Búkà Menu</a></li>
+            <li><a href="#courier">The 30m Courier</a></li>
+            <li><a href="#egusi">Egusi &amp; Swallows</a></li>
+            <li><a href="#suya">Lagos Suya</a></li>
+            <li><a href="#planner">Feast Boxes</a></li>
           </ul>
         </nav>
 
         <div class="nav-actions">
-          <button class="btn-bag" id="btn-open-bag" aria-label="Open Supper Bag">
+          <button class="btn-bag" id="btn-open-bag" aria-label="Open Feast Box">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
               <path d="M3 6h18"/>
               <path d="M16 10a4 4 0 0 1-8 0"/>
             </svg>
-            <span>Supper Box</span>
+            <span>Feast Box</span>
             <span class="bag-count" id="bag-count">0</span>
           </button>
 
-          <a href="#menu" class="btn-primary">Order Tonight</a>
+          <button class="btn-mobile-toggle" id="btn-mobile-toggle" aria-label="Toggle navigation menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+
+          <a href="#menu" class="btn-primary" style="display: none; @media(min-width: 1025px){display: inline-flex;}">Order Supper</a>
         </div>
       </div>
     </div>
   </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-nav-backdrop" id="mobile-nav-backdrop" aria-hidden="true">
+    <div class="mobile-nav-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+      <div class="mobile-nav-header">
+        <span class="brand-name">Búkà <span>&amp;</span> Palm</span>
+        <button class="btn-close-cart" id="btn-close-mobile-nav" aria-label="Close navigation">×</button>
+      </div>
+      <ul class="mobile-nav-links">
+        <li><a href="#menu" class="mobile-link">Daily Búkà Menu</a></li>
+        <li><a href="#courier" class="mobile-link">The 30m Courier</a></li>
+        <li><a href="#egusi" class="mobile-link">Egusi &amp; Swallows</a></li>
+        <li><a href="#suya" class="mobile-link">Lagos Charcoal Suya</a></li>
+        <li><a href="#planner" class="mobile-link">Weekly Feast Boxes</a></li>
+      </ul>
+      <div style="margin-top: auto; padding-top: 2rem;">
+        <a href="#menu" class="btn-primary mobile-link" style="width: 100%;">Order Tonight's Chop</a>
+      </div>
+    </div>
+  </div>
 
   <main>
     <!-- Hero Section (One Section Per Screen) -->
     <section class="hero-section" id="hero">
       <div class="wrap">
         <div class="hero-grid">
-          <div class="hero-content">
-            <div class="hero-tag">SEASONAL PROVISIONS // VALLEY HARVEST</div>
-            <h1 class="hero-title">Seasonal dinner cooked by chefs, delivered in <em>35 minutes</em>.</h1>
+          <div class="hero-content reveal-on-scroll">
+            <div class="hero-tag">AUTHENTIC NIGERIAN DINING // HEIRLOOM RECIPES</div>
+            <h1 class="hero-title">Smoky Party Jollof &amp; Soul Suppers, delivered hot in <em>30 minutes</em>.</h1>
             <p class="hero-description">
-              We partner with twelve certified organic regenerative growers across the valley. Prepared from scratch daily at 4 PM in cast iron, delivered warm in returnable insulated ceramic containers.
+              Fire-roasted tatashe peppers, slow-bleached palm oil, stoneground egusi, and real firewood-smoked party jollof. Cooked in seasoned cast iron and dispatched in vacuum-insulated stoneware tiffins.
             </p>
             <div class="hero-actions">
-              <a href="#menu" class="btn-primary">Build Tonight's Supper</a>
+              <a href="#menu" class="btn-primary">Build Tonight's Feast</a>
               <a href="#planner" class="btn-secondary">Configure Weekly Box</a>
             </div>
 
             <div class="hero-proof">
               <div class="proof-item">
-                <span class="proof-number">12</span>
-                <span class="proof-label">Valley organic farms</span>
+                <span class="proof-number">30m</span>
+                <span class="proof-label">Piping hot delivery</span>
               </div>
               <div class="proof-item">
-                <span class="proof-number">35m</span>
-                <span class="proof-label">Average courier time</span>
+                <span class="proof-number">100%</span>
+                <span class="proof-label">Scratch cooked daily</span>
               </div>
               <div class="proof-item">
-                <span class="proof-number">0%</span>
-                <span class="proof-label">Single-use plastic</span>
+                <span class="proof-number">14</span>
+                <span class="proof-label">Heritage spices</span>
               </div>
             </div>
           </div>
 
-          <div class="hero-visual">
+          <div class="hero-visual reveal-on-scroll stagger-2">
             <div class="photo-frame">
-              <img src="/images/hero_dish.jpg" alt="Braised short rib with stoneground polenta" width="800" height="600" />
-              <div class="photo-badge">Tonight's Special: Angus Short Rib &amp; Creamy Polenta</div>
+              <img src="/images/jollof_hero.jpg" alt="Smoky Nigerian Party Jollof Rice with peppered chicken and sweet plantains" width="800" height="600" />
+              <div class="photo-badge">House Special: Firewood Party Jollof &amp; Peppered Chicken</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Daily Chef Menu & Add-To-Bag Section -->
+    <!-- Daily Búkà Menu & Add-To-Bag Section -->
     <section class="section-container" id="menu">
       <div class="wrap">
-        <div class="section-header">
+        <div class="section-header reveal-on-scroll">
           <div>
-            <div class="section-tag">TODAY'S KITCHEN SUPPERS</div>
-            <h2 class="section-title">Cooked to Order for Tonight</h2>
+            <div class="section-tag">TONIGHT'S BÚKÀ SPECIALS</div>
+            <h2 class="section-title">Cooked to Order for Supper</h2>
           </div>
           <div class="menu-filter-bar" role="tablist">
-            <button class="filter-btn active" data-filter="all">All Items</button>
-            <button class="filter-btn" data-filter="suppers">Chef Suppers</button>
-            <button class="filter-btn" data-filter="hearth">Wood-Fired Hearth</button>
-            <button class="filter-btn" data-filter="garden">Field &amp; Garden</button>
+            <button class="filter-btn active" data-filter="all">Full Búkà</button>
+            <button class="filter-btn" data-filter="jollof">Jollof &amp; Rice</button>
+            <button class="filter-btn" data-filter="soups">Soups &amp; Swallows</button>
+            <button class="filter-btn" data-filter="suya">Lagos Charcoal Suya</button>
+            <button class="filter-btn" data-filter="sides">Sides &amp; Coolers</button>
           </div>
         </div>
 
         <div class="menu-grid" id="menu-items-grid">
           <!-- Item 1 -->
-          <article class="dish-card" data-category="suppers">
+          <article class="dish-card reveal-on-scroll stagger-1" data-category="jollof">
             <div class="dish-meta">
-              <span class="dish-category">Chef Supper</span>
-              <span class="dish-price">$28</span>
+              <span class="dish-category">Signature Rice</span>
+              <span class="dish-price">$24</span>
             </div>
-            <h3 class="dish-title">Braised Short Rib &amp; Polenta</h3>
+            <h3 class="dish-title">Smoky Firewood Party Jollof</h3>
             <p class="dish-desc">
-              12-hour braised beef short rib in heritage red wine reduction, served over stoneground yellow polenta with Meyer lemon gremolata and glazed baby carrots.
+              Long-grain parboiled rice cooked in reduced fire-roasted scotch bonnets, tatashe bell peppers, and smoked bay leaves. Served with chargrilled peppered chicken thigh and caramelized dodo (fried plantains).
             </p>
-            <div class="dish-provenance">Willow Creek Ranch · Oakwood Organic Root Vegetables</div>
-            <button class="btn-add-dish" data-id="1" data-name="Braised Short Rib & Polenta" data-price="28">
-              <span>+ Add to Supper Box</span>
+            <div class="dish-provenance">Cast-Iron Bottom Pot Char · Sweet Ripe Plantains</div>
+            <button class="btn-add-dish" data-id="1" data-name="Smoky Party Jollof & Chicken" data-price="24">
+              <span>+ Add to Feast Box</span>
             </button>
           </article>
 
           <!-- Item 2 -->
-          <article class="dish-card" data-category="hearth">
+          <article class="dish-card reveal-on-scroll stagger-2" data-category="soups">
             <div class="dish-meta">
-              <span class="dish-category">Hearth Bakery</span>
-              <span class="dish-price">$11</span>
+              <span class="dish-category">Soup &amp; Swallow</span>
+              <span class="dish-price">$26</span>
             </div>
-            <h3 class="dish-title">Cast-Iron Country Sourdough</h3>
+            <h3 class="dish-title">Slow-Simmered Egusi &amp; Pounded Yam</h3>
             <p class="dish-desc">
-              Stoneground Sonora wheat loaf, 36-hour cold-fermented with wild levain. Baked at 500°F with a blistering dark crust. Includes whipped sea-salt cultured butter.
+              Stoneground melon seeds simmered in bleached palm oil stock with smoked catfish, tender braised beef brisket, dried crayfish, and uziza leaf. Served with a fluffy wrapped dome of hand-pounded yam (iyan).
             </p>
-            <div class="dish-provenance">Sunstone Grain Mills · Valley Pasture Butter</div>
-            <button class="btn-add-dish" data-id="2" data-name="Cast-Iron Country Sourdough" data-price="11">
-              <span>+ Add to Supper Box</span>
+            <div class="dish-provenance">Benue State Melon Seeds · Wild Smoked Catfish</div>
+            <button class="btn-add-dish" data-id="2" data-name="Egusi Soup & Pounded Yam" data-price="26">
+              <span>+ Add to Feast Box</span>
             </button>
           </article>
 
           <!-- Item 3 -->
-          <article class="dish-card" data-category="suppers">
+          <article class="dish-card reveal-on-scroll stagger-3" data-category="suya">
             <div class="dish-meta">
-              <span class="dish-category">Chef Supper</span>
-              <span class="dish-price">$24</span>
+              <span class="dish-category">Charcoal Grill</span>
+              <span class="dish-price">$22</span>
             </div>
-            <h3 class="dish-title">Handmade Wild Chanterelle Tagliatelle</h3>
+            <h3 class="dish-title">Lagos Street Suya Platter</h3>
             <p class="dish-desc">
-              Egg yolk ribbon pasta hand-extruded this morning, tossed with foraged chanterelle mushrooms, thyme brown butter, toasted hazelnuts, and aged mountain pecorino.
+              Thinly sliced prime beef flank crusted in authentic roasted kuli-kuli peanut spice, ginger, and grains of paradise. Seared over open coals and served with shaved red onions, vine tomatoes, and fresh lime.
             </p>
-            <div class="dish-provenance">Coastal Pine Forests · Pasture Bird Farm Eggs</div>
-            <button class="btn-add-dish" data-id="3" data-name="Wild Chanterelle Tagliatelle" data-price="24">
-              <span>+ Add to Supper Box</span>
+            <div class="dish-provenance">Hausa Yaji Spice Master · Prime Flank Steak</div>
+            <button class="btn-add-dish" data-id="3" data-name="Lagos Beef Suya Platter" data-price="22">
+              <span>+ Add to Feast Box</span>
             </button>
           </article>
 
           <!-- Item 4 -->
-          <article class="dish-card" data-category="garden">
+          <article class="dish-card reveal-on-scroll stagger-1" data-category="jollof">
             <div class="dish-meta">
-              <span class="dish-category">Field &amp; Garden</span>
-              <span class="dish-price">$16</span>
+              <span class="dish-category">Heritage Rice</span>
+              <span class="dish-price">$25</span>
             </div>
-            <h3 class="dish-title">Charred Romanesco &amp; Stracciatella</h3>
+            <h3 class="dish-title">Ayamase (Designer Ofada Stew)</h3>
             <p class="dish-desc">
-              Wood-fired romanesco florets over fresh hand-pulled stracciatella cheese, finished with toasted pistachio crumble and cold-pressed citrus oil.
+              Aromatic indigenous unpolished Ofada brown rice topped with deep green bleached palm oil stew made with roasted green habaneros, locust beans (irú), assorted tender braised meats, and a boiled egg.
             </p>
-            <div class="dish-provenance">Greenleaf Farm Co-op · Sweet River Creamery</div>
-            <button class="btn-add-dish" data-id="4" data-name="Charred Romanesco & Stracciatella" data-price="16">
-              <span>+ Add to Supper Box</span>
+            <div class="dish-provenance">Ogun State Indigenous Ofada · Fermented Irú</div>
+            <button class="btn-add-dish" data-id="4" data-name="Ayamase Ofada Rice Bowl" data-price="25">
+              <span>+ Add to Feast Box</span>
             </button>
           </article>
 
           <!-- Item 5 -->
-          <article class="dish-card" data-category="garden">
+          <article class="dish-card reveal-on-scroll stagger-2" data-category="sides">
             <div class="dish-meta">
-              <span class="dish-category">Field &amp; Garden</span>
-              <span class="dish-price">$14</span>
+              <span class="dish-category">Búkà Comfort</span>
+              <span class="dish-price">$18</span>
             </div>
-            <h3 class="dish-title">Heirloom Tuscan Kale &amp; Radish Salad</h3>
+            <h3 class="dish-title">Ewa Aganyin &amp; Warm Agege Bread</h3>
             <p class="dish-desc">
-              Tender shredded lacinato kale, crisp shaved watermelon radishes, pickled shallots, toasted sunflower seeds, and whole-grain mustard shallot vinaigrette.
+              Silky slow-cooked brown honey beans mashed until buttery, drizzled with fiery slow-caramelized palm oil chili-onion sauce, paired with warm thick-sliced sweet Agege bakery bread.
             </p>
-            <div class="dish-provenance">Oakwood Organic Farm · Valley Orchard Honey</div>
-            <button class="btn-add-dish" data-id="5" data-name="Tuscan Kale & Radish Salad" data-price="14">
-              <span>+ Add to Supper Box</span>
+            <div class="dish-provenance">Oloyin Honey Beans · Fresh Bakery Agege Loaf</div>
+            <button class="btn-add-dish" data-id="5" data-name="Ewa Aganyin & Agege Loaf" data-price="18">
+              <span>+ Add to Feast Box</span>
             </button>
           </article>
 
           <!-- Item 6 -->
-          <article class="dish-card" data-category="hearth">
+          <article class="dish-card reveal-on-scroll stagger-3" data-category="sides">
             <div class="dish-meta">
-              <span class="dish-category">Hearth Bakery</span>
-              <span class="dish-price">$13</span>
+              <span class="dish-category">Cold Press Cooler</span>
+              <span class="dish-price">$8</span>
             </div>
-            <h3 class="dish-title">Poached Quince &amp; Mascarpone Tart</h3>
+            <h3 class="dish-title">Chilled Spiced Zobo &amp; Citrus</h3>
             <p class="dish-desc">
-              Flaky butter pastry shell filled with vanilla-whipped local mascarpone and topped with spiced wine-poached quince and crushed candied walnuts.
+              Cold-steeped Nigerian hibiscus calyces brewed with fresh crushed ginger root, cloves, sweet pineapple juice, citrus peels, and fresh mint leaves. Naturally sweetened with wildflower honey.
             </p>
-            <div class="dish-provenance">Highland Heritage Orchard · Sweet River Creamery</div>
-            <button class="btn-add-dish" data-id="6" data-name="Poached Quince Tart" data-price="13">
-              <span>+ Add to Supper Box</span>
+            <div class="dish-provenance">Kano Hibiscus Flowers · Cold-Pressed Ginger</div>
+            <button class="btn-add-dish" data-id="6" data-name="Chilled Spiced Zobo Cooler" data-price="8">
+              <span>+ Add to Feast Box</span>
             </button>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- The 3-Step Courier Delivery Architecture -->
+    <!-- The 3-Step Buka Courier Delivery System -->
     <section class="section-container" id="courier" style="background: var(--p-surface);">
       <div class="wrap">
-        <div class="section-header">
+        <div class="section-header reveal-on-scroll">
           <div>
-            <div class="section-tag">ZERO WASTE LOGISTICS</div>
-            <h2 class="section-title">How Our Courier Works</h2>
+            <div class="section-tag">PIPING HOT LOGISTICS</div>
+            <h2 class="section-title">The 30-Minute Courier Method</h2>
           </div>
         </div>
 
         <div class="process-grid">
-          <div class="process-step">
+          <div class="process-step reveal-on-scroll stagger-1">
             <div class="process-num">01</div>
-            <h3 class="process-title">Harvested at Dawn</h3>
+            <h3 class="process-title">Ground Fresh at Dawn</h3>
             <p class="process-body">
-              Greens, vegetables, and heritage grains are harvested every morning before 7 AM from our 12 regional growers. Nothing spends days in a commercial cold-chain warehouse.
+              Melon seeds, Scotch bonnets, and kuli-kuli peanut cakes are stoneground at 6 AM. We don't use powdered industrial seasoning packets or frozen bases.
             </p>
           </div>
 
-          <div class="process-step">
+          <div class="process-step reveal-on-scroll stagger-2">
             <div class="process-num">02</div>
-            <h3 class="process-title">Cooked to Order at 4 PM</h3>
+            <h3 class="process-title">Cast-Iron Firewood Simmer</h3>
             <p class="process-body">
-              Our culinary team braises, roasts, and bakes each supper in French copper and seasoned cast iron. Meals are ladled directly into vacuum-insulated stoneware canisters.
+              Jollof rice and egusi are cooked in heavy cast iron to produce the authentic smoky party aroma that defines traditional Nigerian open-fire cooking.
             </p>
           </div>
 
-          <div class="process-step">
+          <div class="process-step reveal-on-scroll stagger-3">
             <div class="process-num">03</div>
-            <h3 class="process-title">Electric Trike Hand-off</h3>
+            <h3 class="process-title">Double-Walled Tiffins</h3>
             <p class="process-body">
-              Delivered within 35 minutes by our dedicated courier fleet. Your meal arrives piping hot. When you order next, simply hand back the empty containers for sanitization.
+              Ladled directly into vacuum-insulated stainless steel canisters. Handed to your courier in electric trikes and delivered boiling hot within 30 minutes.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Visual Split Section: Hearth Bakery -->
-    <section class="split-section" id="bakery">
+    <!-- Visual Split Section: Egusi & Swallows -->
+    <section class="split-section" id="egusi">
       <div class="wrap">
         <div class="split-grid">
-          <div class="split-visual">
+          <div class="split-visual reveal-on-scroll">
             <div class="photo-frame">
-              <img src="/images/sourdough.jpg" alt="Artisanal sourdough bread with cultured butter" width="800" height="600" />
+              <img src="/images/egusi_soup.jpg" alt="Rich Nigerian Egusi soup with braised beef and pounded yam" width="800" height="600" />
             </div>
           </div>
-          <div class="split-content">
-            <div class="section-tag">NATURAL FERMENTATION</div>
-            <h2 class="section-title">Bread Baked for Digestion and Flavor</h2>
+          <div class="split-content reveal-on-scroll stagger-2">
+            <div class="section-tag">HERITAGE SOUPS</div>
+            <h2 class="section-title">The Depth of Slow-Braised Egusi</h2>
             <p class="hero-description">
-              Commercial bread relies on fast synthetic yeast. Our loaves ferment for 36 hours using a wild levain culture started in 2018. The result is an open, custard-like crumb and caramelized blistered crust that is gentle on your gut.
+              Our egusi soup is cooked with unpeeled organic melon seeds toasted and ground by hand, folded into a reduction of smoked catfish stock, dried crayfish, and palm fruit oil. Paired with silky, elastic pounded yam (iyan) made from premium white yam tubers.
             </p>
             <ul class="farm-list">
               <li class="farm-item">
                 <div>
-                  <div class="farm-name">Sonora Heritage Wheat</div>
-                  <div class="farm-produce">Stoneground unbleached grain with germ intact</div>
+                  <div class="farm-name">Hand-Pounded Iyan</div>
+                  <div class="farm-produce">Freshly boiled white yam, pounded velvety smooth</div>
                 </div>
-                <div class="farm-dist">Organic</div>
+                <div class="farm-dist">100% Yam</div>
               </li>
               <li class="farm-item">
                 <div>
-                  <div class="farm-name">Wild Grassland Butter</div>
-                  <div class="farm-produce">Cultured 48 hours with Maldon sea salt flakes</div>
+                  <div class="farm-name">Dried Crayfish &amp; Catfish</div>
+                  <div class="farm-produce">Wood-smoked along the Niger River Delta</div>
                 </div>
-                <div class="farm-dist">82% Butterfat</div>
+                <div class="farm-dist">Wild-Smoked</div>
               </li>
             </ul>
           </div>
@@ -297,42 +327,35 @@
       </div>
     </section>
 
-    <!-- Visual Split Section: Organic Grower Network -->
-    <section class="split-section" id="farms" style="background: var(--p-surface);">
+    <!-- Visual Split Section: Lagos Suya & Charcoal Masters -->
+    <section class="split-section" id="suya" style="background: var(--p-surface);">
       <div class="wrap">
         <div class="split-grid reverse">
-          <div class="split-visual">
+          <div class="split-visual reveal-on-scroll">
             <div class="photo-frame">
-              <img src="/images/harvest_crate.jpg" alt="Crate of fresh organic harvest vegetables" width="800" height="600" />
+              <img src="/images/suya_skewers.jpg" alt="Grilled Lagos street beef suya skewers with red onions" width="800" height="600" />
             </div>
           </div>
-          <div class="split-content">
-            <div class="section-tag">THE GROWER NETWORK</div>
-            <h2 class="section-title">Know Exactly Where Your Supper Grew</h2>
+          <div class="split-content reveal-on-scroll stagger-2">
+            <div class="section-tag">OPEN COAL FLAME</div>
+            <h2 class="section-title">Authentic Charcoal Street Suya</h2>
             <p class="hero-description">
-              Every dish on our menu credits the specific family farm that cultivated the ingredients. We pay our farmers 40% above commodity market prices to encourage regenerative soil practices.
+              Prepared by master Mai Suya grillers. We pound whole roasted peanut cakes into coarse kuli-kuli flour, blended with alligator pepper, dried ginger, and garlic. Seared over glowing hardwood charcoal until smoky and deeply spiced.
             </p>
             <ul class="farm-list">
               <li class="farm-item">
                 <div>
-                  <div class="farm-name">Oakwood Organic Farm</div>
-                  <div class="farm-produce">Heirloom tomatoes, Tuscan kale &amp; cold-pressed olive oil</div>
+                  <div class="farm-name">Northern Yaji Spice</div>
+                  <div class="farm-produce">Defatted roasted peanut pressings, dried chili &amp; ginger</div>
                 </div>
-                <div class="farm-dist">14 miles</div>
+                <div class="farm-dist">Authentic</div>
               </li>
               <li class="farm-item">
                 <div>
-                  <div class="farm-name">Willow Creek Pastures</div>
-                  <div class="farm-produce">100% grass-fed Angus beef &amp; heritage poultry</div>
+                  <div class="farm-name">Hardwood Charcoal</div>
+                  <div class="farm-produce">Seared at 600°F for caramelized bark and tender core</div>
                 </div>
-                <div class="farm-dist">22 miles</div>
-              </li>
-              <li class="farm-item">
-                <div>
-                  <div class="farm-name">Sweet River Creamery</div>
-                  <div class="farm-produce">Pasture-grazed stracciatella, raw butter &amp; curd</div>
-                </div>
-                <div class="farm-dist">18 miles</div>
+                <div class="farm-dist">Coal-Fired</div>
               </li>
             </ul>
           </div>
@@ -340,27 +363,27 @@
       </div>
     </section>
 
-    <!-- Interactive Weekly Supper Box Planner -->
+    <!-- Interactive Weekly Feast Box Planner -->
     <section class="section-container" id="planner">
       <div class="wrap">
-        <div class="section-header">
+        <div class="section-header reveal-on-scroll">
           <div>
-            <div class="section-tag">CUSTOM SUBSCRIPTION</div>
-            <h2 class="section-title">Configure Your Weekly Supper Box</h2>
+            <div class="section-tag">FAMILY &amp; OWAMBE FEASTS</div>
+            <h2 class="section-title">Configure Your Weekly Feast Plan</h2>
             <p class="hero-description" style="margin-bottom: 0;">
-              Select your household size and how many evenings you'd like chef-cooked dinners delivered warm.
+              Choose how many people are dining and how many evenings a week you want authentic Nigerian soul suppers delivered warm.
             </p>
           </div>
         </div>
 
-        <div class="planner-card">
+        <div class="planner-card reveal-on-scroll stagger-1">
           <div class="planner-inputs">
             <div class="planner-group">
-              <span class="planner-label">Household Size</span>
+              <span class="planner-label">Dining Party Size</span>
               <div class="btn-pill-group" id="group-diners" role="radiogroup">
-                <button type="button" class="pill-option-btn active" data-diners="2">1–2 Diners</button>
-                <button type="button" class="pill-option-btn" data-diners="4">3–4 Family</button>
-                <button type="button" class="pill-option-btn" data-diners="6">5+ Feast</button>
+                <button type="button" class="pill-option-btn active" data-diners="2">Solo Chop (1–2)</button>
+                <button type="button" class="pill-option-btn" data-diners="4">Family (3–4)</button>
+                <button type="button" class="pill-option-btn" data-diners="6">Owambe Feast (5+)</button>
               </div>
             </div>
 
@@ -374,10 +397,10 @@
             </div>
 
             <div class="planner-group">
-              <span class="planner-label">Dietary Preference</span>
-              <div class="btn-pill-group" id="group-diet" role="radiogroup">
-                <button type="button" class="pill-option-btn active" data-diet="omnivore">Chef's Table (Omnivore)</button>
-                <button type="button" class="pill-option-btn" data-diet="vegetarian">Field Harvest (Vegetarian)</button>
+              <span class="planner-label">Spice Tolerance</span>
+              <div class="btn-pill-group" id="group-spice" role="radiogroup">
+                <button type="button" class="pill-option-btn active" data-spice="lagos">Authentic Lagos Fire (Hot)</button>
+                <button type="button" class="pill-option-btn" data-spice="mild">Comfort Heat (Mild Scotch Bonnet)</button>
               </div>
             </div>
           </div>
@@ -385,30 +408,30 @@
           <div class="planner-summary-panel">
             <div>
               <div class="summary-price-box">
-                <div class="summary-per-serving" id="summary-price">$19<span>/ plate</span></div>
+                <div class="summary-per-serving" id="summary-price">$18<span>/ portion</span></div>
               </div>
               <ul class="summary-rows">
                 <li class="summary-row">
                   <span id="summary-meals-count">6 portions per week</span>
-                  <span id="summary-meals-subtotal">$114.00</span>
+                  <span id="summary-meals-subtotal">$108.00</span>
                 </li>
                 <li class="summary-row">
-                  <span>Returnable canister deposit</span>
-                  <span style="color: var(--p-accent);">Waived (Free)</span>
+                  <span>Insulated tiffin canister exchange</span>
+                  <span style="color: var(--p-action); font-weight: 600;">Free / Included</span>
                 </li>
                 <li class="summary-row">
-                  <span>Electric courier delivery</span>
-                  <span style="color: var(--p-accent);">Included</span>
+                  <span>Bonus Golden Puff-Puff Platter</span>
+                  <span style="color: var(--p-accent); font-weight: 600;">On Us</span>
                 </li>
                 <li class="summary-row total">
-                  <span>Weekly Total</span>
-                  <span id="summary-weekly-total">$114.00</span>
+                  <span>Weekly Investment</span>
+                  <span id="summary-weekly-total">$108.00</span>
                 </li>
               </ul>
             </div>
 
             <button class="btn-primary" id="btn-lock-plan" style="width: 100%; justify-content: center; margin-top: 2rem;">
-              Start Weekly Supper Plan
+              Start Weekly Nigerian Feast Plan
             </button>
           </div>
         </div>
@@ -416,26 +439,41 @@
     </section>
   </main>
 
-  <!-- Slide-Over Supper Bag / Cart Drawer -->
+  <!-- Sticky Mobile Bottom Action Bar (Instant Phone Ordering) -->
+  <aside class="mobile-bottom-bar" id="mobile-bottom-bar" aria-label="Mobile Quick Checkout">
+    <div class="mobile-bottom-inner">
+      <div class="mobile-status-text">
+        <span>⚡ Courier wait:</span> <strong>28 mins</strong>
+      </div>
+      <button class="btn-mobile-order" id="btn-mobile-order-open">
+        <span>Feast Box (<span id="mobile-bag-count">0</span>)</span>
+        <span>·</span>
+        <span id="mobile-bag-subtotal">$0</span>
+        <span>→</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Slide-Over Feast Box / Cart Drawer -->
   <div class="cart-drawer-backdrop" id="cart-drawer-backdrop" aria-hidden="true">
     <div class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title-text">
       <div class="cart-header">
-        <h3 class="cart-title" id="cart-title-text">Tonight's Supper Box</h3>
+        <h3 class="cart-title" id="cart-title-text">Tonight's Feast Box</h3>
         <button class="btn-close-cart" id="btn-close-cart" aria-label="Close box">×</button>
       </div>
 
       <div class="cart-body" id="cart-body">
-        <div class="cart-empty-msg" id="cart-empty-msg">Your supper box is empty.<br>Browse the menu to add chef-cooked dishes.</div>
+        <div class="cart-empty-msg" id="cart-empty-msg">Your feast box is empty.<br>Select from our daily firewood jollof, egusi, and suya menu.</div>
         <div id="cart-items-list"></div>
       </div>
 
       <div class="cart-footer">
         <div class="cart-subtotal-row">
-          <span>Subtotal</span>
+          <span>Total Supper</span>
           <span id="cart-subtotal">$0.00</span>
         </div>
         <button class="btn-primary" id="btn-checkout" style="width: 100%; justify-content: center;">
-          Proceed to Delivery Dispatch
+          Dispatch Courier to My Address
         </button>
       </div>
     </div>
@@ -447,51 +485,51 @@
       <div class="footer-inner">
         <div>
           <a href="#" class="brand" style="color: #ffffff;">
-            <svg class="brand-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M11 20A7 7 0 0 1 4 13C4 8 11 2 11 2s7 6 7 11a7 7 0 0 1-7 7Z"/>
-              <path d="M11 2v18"/>
+            <svg class="brand-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 2C8.268 2 2 8.268 2 16s6.268 14 14 14 14-6.268 14-14S23.732 2 16 2Z" fill="#ffffff" fill-opacity="0.12"/>
+              <path d="M16 6v20M8 12c4 0 8 4 8 4s4-4 8-4M9 20c3.5 0 7 2 7 2s3.5-2 7-2" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
             </svg>
-            <span class="brand-name">Marrow &amp; Thyme</span>
+            <span class="brand-name">Búkà <span>&amp;</span> Palm</span>
           </a>
           <p class="footer-brand-desc">
-            Farm-to-table culinary delivery network. Prepared from scratch daily and dispatched in zero-plastic insulated returnable containers.
+            Authentic Nigerian soul suppers and street delicacies. Cooked fresh in cast iron and couriered piping hot in zero-waste insulated tiffins.
           </p>
         </div>
 
         <div>
-          <div class="footer-heading">Provisions</div>
+          <div class="footer-heading">Chop Menu</div>
           <ul class="footer-links">
-            <li><a href="#menu">Tonight's Menu</a></li>
-            <li><a href="#bakery">Sonora Sourdough</a></li>
-            <li><a href="#farms">Organic Growers</a></li>
-            <li><a href="#planner">Supper Subscriptions</a></li>
+            <li><a href="#menu">Party Jollof Rice</a></li>
+            <li><a href="#egusi">Egusi &amp; Pounded Yam</a></li>
+            <li><a href="#suya">Lagos Street Suya</a></li>
+            <li><a href="#planner">Owambe Feast Boxes</a></li>
           </ul>
         </div>
 
         <div>
           <div class="footer-heading">Kitchens &amp; Zones</div>
           <ul class="footer-links">
-            <li><a href="#">Downtown Commissary</a></li>
-            <li><a href="#">West Valley Hearth</a></li>
-            <li><a href="#">East Hills Dispatch</a></li>
-            <li><a href="#">Delivery Zone Map</a></li>
+            <li><a href="#">Victoria Island Hub</a></li>
+            <li><a href="#">Lekki Phase 1 Hearth</a></li>
+            <li><a href="#">Ikeja Dispatch Centre</a></li>
+            <li><a href="#">Delivery Radius Map</a></li>
           </ul>
         </div>
 
         <div>
           <div class="footer-heading">Care &amp; Quality</div>
           <ul class="footer-links">
-            <li><a href="#">Canister Return Protocol</a></li>
-            <li><a href="#">Dietary &amp; Allergens</a></li>
-            <li><a href="#">Regenerative Standards</a></li>
-            <li><a href="#">Contact Kitchen Ops</a></li>
+            <li><a href="#">Hot-Tiffin Return Protocol</a></li>
+            <li><a href="#">Peanut &amp; Allergen Guide</a></li>
+            <li><a href="#">Locust Bean (Irú) Sourcing</a></li>
+            <li><a href="#">Contact Búkà Ops</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <div>Built with taste-skill 2.5 standards · MIT License · © 2026 Marrow &amp; Thyme Co.</div>
-        <div>Kitchen Hours: 4:00 PM – 9:30 PM Daily · Local Courier Service</div>
+        <div>Built with taste-skill 2.5 standards · MIT License · © 2026 Búkà &amp; Palm Kitchens Ltd.</div>
+        <div>Kitchen Service: 12:00 PM – 10:30 PM Daily · Electric Courier Fleet</div>
       </div>
     </div>
   </footer>
