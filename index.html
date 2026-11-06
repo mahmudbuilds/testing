@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en" data-type="service" data-radius="soft" data-ground="sand" data-buttons="solid" data-motion>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Búkà &amp; Palm — Authentic Nigerian Party Jollof &amp; Soul Supper Delivery</title>
+  <meta name="description" content="Firewood party jollof rice, stoneground egusi soup with pounded yam, and charcoal Lagos suya. Cooked fresh in seasoned cast iron and delivered boiling hot in double-walled brass tiffins." />
+  <meta name="site-kind" content="other" />
+  <meta name="page-type" content="service" />
+  <meta property="og:title" content="Búkà &amp; Palm — Authentic Nigerian Food Delivery" />
+  <meta property="og:description" content="Authentic Nigerian soul suppers and street delicacies delivered piping hot in 30 minutes in zero-waste insulated tiffins." />
+  <meta name="theme-color" content="#faf7f2" />
+
+  <!-- Google Fonts: Fraunces (Display Serif) + Figtree (Body) + Martian Mono (Data) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..700,0..100,0..1&family=Martian+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="module" crossorigin src="./assets/index-Dg_bGK2H.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BFzPH8EV.css">
+</head>
+<body>
+  <!-- Scroll Progress Indicator -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Top Dispatch Status Banner -->
+  <div class="top-bar">
+    <div class="wrap top-bar-wrap">
+      <div class="top-bar-left">
+        <span class="live-pulse"></span>
+        <span>BÚKÀ HEARTH KITCHEN LIVE // Batch 4 firewood pot resting // Next dispatch: <strong>12 mins</strong></span>
+      </div>
+      <div class="top-bar-right">
+        <button class="sound-toggle-btn" id="btn-sound-toggle" aria-label="Toggle Hearth Ambience Audio" title="Experience firewood kitchen ambience">
+          <span class="sound-icon" id="sound-icon">🔈</span>
+          <span id="sound-label">Búkà Ambience</span>
+          <span class="eq-bars" id="eq-bars" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+        </button>
+        <span class="top-bar-divider">|</span>
+        <span class="tiffin-badge">100% Zero-Plastic Tiffins</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="navbar" id="navbar">
+    <div class="wrap">
+      <div class="navbar-inner">
+        <a href="#" class="brand" aria-label="Búkà and Palm Homepage">
+          <svg class="brand-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 2C8.268 2 2 8.268 2 16s6.268 14 14 14 14-6.268 14-14S23.732 2 16 2Z" fill="#c2410c" fill-opacity="0.12"/>
+            <path d="M16 6v20M8 12c4 0 8 4 8 4s4-4 8-4M9 20c3.5 0 7 2 7 2s3.5-2 7-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span class="brand-name">Búkà <span>&amp;</span> Palm</span>
+        </a>
+
+        <nav aria-label="Main Navigation">
+          <ul class="nav-links">
+            <li><a href="#custom-plate">Curate Plate</a></li>
+            <li><a href="#menu">Daily Menu</a></li>
+            <li><a href="#tiffin">The Hot Tiffin</a></li>
+            <li><a href="#egusi">Egusi &amp; Swallows</a></li>
+            <li><a href="#suya">Lagos Suya</a></li>
+            <li><a href="#planner">Feast Plans</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-actions">
+          <button class="btn-bag" id="btn-open-bag" aria-label="Open Feast Box">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+              <path d="M3 6h18"/>
+              <path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+            <span>Feast Box</span>
+            <span class="bag-count" id="bag-count">0</span>
+          </button>
+
+          <button class="btn-mobile-toggle" id="btn-mobile-toggle" aria-label="Toggle navigation menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+
+          <a href="#custom-plate" class="btn-primary desktop-cta">Craft Supper</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-nav-backdrop" id="mobile-nav-backdrop" aria-hidden="true">
+    <div class="mobile-nav-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+      <div class="mobile-nav-header">
+        <span class="brand-name">Búkà <span>&amp;</span> Palm</span>
+        <button class="btn-close-cart" id="btn-close-mobile-nav" aria-label="Close navigation">×</button>
+      </div>
+      <ul class="mobile-nav-links">
+        <li><a href="#custom-plate" class="mobile-link">Curate Custom Plate</a></li>
+        <li><a href="#menu" class="mobile-link">Tonight's Búkà Menu</a></li>
+        <li><a href="#tiffin" class="mobile-link">The 3-Tier Hot Tiffin</a></li>
+        <li><a href="#egusi" class="mobile-link">Egusi &amp; Swallows</a></li>
+        <li><a href="#suya" class="mobile-link">Lagos Charcoal Suya</a></li>
+        <li><a href="#planner" class="mobile-link">Weekly Feast Plans</a></li>
+      </ul>
+      <div class="mobile-nav-bottom">
+        <div class="mobile-sound-row">
+          <span>Kitchen Ambience Sound:</span>
+          <button class="sound-toggle-btn mobile-sound-btn" id="btn-sound-toggle-mobile">
+            <span id="sound-icon-mobile">🔈</span> <span id="sound-label-mobile">Turn On</span>
+          </button>
+        </div>
+        <a href="#custom-plate" class="btn-primary mobile-link" style="width: 100%; justify-content: center;">Build Tonight's Feast</a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- Hero Section (One Section Per Screen) -->
+    <section class="hero-section" id="hero">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div class="hero-content reveal-on-scroll">
+            <div class="hero-tag-row">
+              <span class="hero-tag">HEIRLOOM NIGERIAN DINING</span>
+              <span class="hero-tag-pill">Firewood Hearth Certified</span>
+            </div>
+            <h1 class="hero-title">Smoky Party Jollof &amp; Soul Suppers, delivered hot in <em>30 minutes</em>.</h1>
+            <p class="hero-description">
+              Charred tatashe peppers, slow-bleached palm oil stock, stoneground egusi, and true firewood bottom-pot jollof rice. Dispatched in three-tier vacuum-insulated brass tiffins.
+            </p>
+            <div class="hero-actions">
+              <a href="#custom-plate" class="btn-primary">Curate Your Owambe Plate</a>
+              <a href="#menu" class="btn-secondary">Explore À La Carte</a>
+            </div>
+
+            <div class="hero-proof">
+              <div class="proof-item">
+                <span class="proof-number">30m</span>
+                <span class="proof-label">Piping hot delivery</span>
+              </div>
+              <div class="proof-item">
+                <span class="proof-number">74°C</span>
+                <span class="proof-label">Guaranteed doorstep temp</span>
+              </div>
+              <div class="proof-item">
+                <span class="proof-number">100%</span>
+                <span class="proof-label">Zero single-use plastic</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual reveal-on-scroll stagger-2">
+            <div class="photo-frame hero-frame">
+              <img src="./images/jollof_hero.jpg" alt="Smoky Nigerian Party Jollof Rice with peppered chicken and fried plantains" width="800" height="600" />
+              <div class="photo-badge">House Special: Firewood Party Jollof &amp; Peppered Chicken</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UNIQUE FEATURE 1: Interactive "Curate Your Owambe Feast Plate" -->
+    <section class="section-container" id="custom-plate" style="background: var(--p-surface);">
+      <div class="wrap">
+        <div class="section-header reveal-on-scroll">
+          <div>
+            <div class="section-tag">CUSTOM CULINARY ARCHITECTURE</div>
+            <h2 class="section-title">Curate Your Custom Owambe Feast Plate</h2>
+            <p class="hero-description" style="margin-bottom: 0;">
+              Assemble your ideal Nigerian feast just as you would at an authentic Lagos celebration. Select your base, stew reduction, grill protein, and sides.
+            </p>
+          </div>
+          <div class="plate-status-badge">
+            <span class="status-dot"></span> Live Plate Builder
+          </div>
+        </div>
+
+        <div class="builder-layout">
+          <!-- Left: Selection Steps -->
+          <div class="builder-controls reveal-on-scroll stagger-1">
+            <!-- Step 1: Base -->
+            <div class="builder-step">
+              <div class="step-label-row">
+                <span class="step-num">01</span>
+                <span class="step-name">The Rice or Swallow Foundation</span>
+              </div>
+              <div class="step-options" id="opt-base" role="radiogroup">
+                <button type="button" class="builder-btn active" data-type="base" data-name="Firewood Party Jollof" data-price="0" data-notes="Cast-iron smoky char with sweet tatashe peppers">
+                  <span class="btn-check">✓</span>
+                  <div class="btn-text-wrap">
+                    <strong>Firewood Party Jollof</strong>
+                    <span>Cast-iron bottom-pot char</span>
+                  </div>
+                  <span class="btn-price-tag">Included</span>
+                </button>
+                <button type="button" class="builder-btn" data-type="base" data-name="Indigenous Ofada Brown Rice" data-price="2" data-notes="Aromatic unpolished Ogun rice with fermented locust beans">
+                  <span class="btn-check">✓</span>
+                  <div class="btn-text-wrap">
+                    <strong>Indigenous Ofada Rice</strong>
+                    <span>Aromatic brown unpolished rice</span>
+                  </div>
+                  <span class="btn-price-tag">+$2</span>
+                </button>
+                <button type="button" class="builder-btn" data-type="base" data-name="Hand-Pounded Yam (Iyan)" data-price="1" data-notes="Fresh boiled white yam tubers pounded elastic and velvety">
+                  <span class="btn-check">✓</span>
+                  <div class="btn-text-wrap">
+                    <strong>Pounded Yam (Iyan)</strong>
+                    <span>Velvety smooth white yam dome</span>
+                  </div>
+                  <span class="btn-price-tag">+$1</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Step 2: Soup/Stew Reduction -->
+            <div class="builder-step">
+              <div class="step-label-row">
+                <span class="step-num">02</span>
+                <span class="step-name">The Pot Stew or Soup Reduction</span>
+              </div>
+              <div class="step-options" id="opt-soup" role="radiogroup">
+                <button type="button" class="builder-btn active" data-type="soup" data-name="Stoneground Egusi Soup" data-price="0" data-notes="Benue melon seeds with smoked catfish and bitterleaf">
+                  <span class="btn-check">✓</span>
+                  <div class="btn-text-wrap">
+                    <strong>Stoneground Egusi Soup</strong>
+                    <span>Smoked catfish &amp; wild crayfish</span>
+                  </div>
+                  <span class="btn-price-tag">Included</span>
+                </button>
+                <button type="button" class="builder-btn" data-type="soup" data-name="Efo Riro Vegetable Pot" data-price="2" data-notes="Steamed wild spinach with fermented irú and shredded stockfish">
+                  <span class="btn-check">✓</span>
+                  <div class="btn-text-wrap">
+                    <strong>Efo Riro Heritage Stew</strong>
+                    <span>Wild spinach &amp; locust bean stock</span>
+                  </div>
+                  <span class="btn-price-tag">+$2</span>
+                </button>
+                <button type="button" class="builder-btn" data-type="soup" data-name="Bleached Obe Ata Stew" data-price="0" data-notes="Fiery slow-caramelized scotch bonnet and plum tomato reduction">
+                  <span class="btn-check">✓</span>
+                  <div class="btn-text-wrap">
+                    <strong>Slow-Caramelized Obe Ata</strong>
+                    <span>Roasted red bell &amp; habanero stew</span>
+                  </div>
+                  <span class="btn-price-tag">Included</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Step 3: Protein/Grill -->
+            <div class="builder-step">
+              <div class="step-label-row">
+                <span class="step-num">03</span>
+                <span class="step-name">The Hearth Protein / Charcoal Grill</span>
+              </div>
+              <div class="step-options" id="opt-protein" role="radiogroup">
+                <button type="button" class="builder-btn active" data-type="protein" data-name="Flame-Charred Peppered Goat (Asun)" data-price="0" data-notes="Tender smoked goat meat tossed in crushed scotch bonnets and onions">
+                  <span class="btn-check">✓</span>
+                  <div class="btn-text-wrap">
+                    <strong>Charred Peppered Goat (Asun)</strong>
+                    <span>Smoked goat meat in spicy ata rodo</span>
+                  </div>
+                  <span class="btn-price-tag">Included</span>
+                </button>
+                <button type="button" class="builder-btn" data-type="protein" data-name="Lagos Yaji Beef Suya" data-price="0" data-notes="Prime flank crusted in toasted kuli-kuli peanut spice and seared on coals">
+                  <span class="btn-check">✓</span>
+                  <div class="btn-text-wrap">
+                    <strong>Lagos Street Beef Suya</strong>
+                    <span>Roasted peanut yaji &amp; red onions</span>
+                  </div>
+                  <span class="btn-price-tag">Included</span>
+                </button>
+                <button type="button" class="builder-btn" data-type="protein" data-name="Crispy Wild Titus Mackerel" data-price="1" data-notes="Deeply seasoned whole fried mackerel steak with spicy pepper glaze">
+                  <span class="btn-check">✓</span>
+                  <div class="btn-text-wrap">
+                    <strong>Crispy Titus Fish Steak</strong>
+                    <span>Golden fried with pepper reduction</span>
+                  </div>
+                  <span class="btn-price-tag">+$1</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Step 4: Accompaniment / Sides -->
+            <div class="builder-step">
+              <div class="step-label-row">
+                <span class="step-num">04</span>
+                <span class="step-name">Authentic Accompaniments (Optional)</span>
+              </div>
+              <div class="step-options multi" id="opt-sides">
+                <button type="button" class="builder-btn active" data-type="side" data-id="dodo" data-name="Fried Sweet Plantains (Dodo)" data-price="3">
+                  <span class="btn-check">✓</span>
+                  <div class="btn-text-wrap">
+                    <strong>Caramelized Dodo</strong>
+                    <span>Ripe fried yellow plantains</span>
+                  </div>
+                  <span class="btn-price-tag">+$3</span>
+                </button>
+                <button type="button" class="builder-btn" data-type="side" data-id="moin" data-name="Steamed Leaf Moin-Moin" data-price="4">
+                  <span class="btn-check">✓</span>
+                  <div class="btn-text-wrap">
+                    <strong>Steamed Leaf Moin-Moin</strong>
+                    <span>Ground black-eyed peas &amp; egg</span>
+                  </div>
+                  <span class="btn-price-tag">+$4</span>
+                </button>
+                <button type="button" class="builder-btn" data-type="side" data-id="zobo" data-name="Chilled Spiced Zobo Cooler" data-price="5">
+                  <span class="btn-check">✓</span>
+                  <div class="btn-text-wrap">
+                    <strong>Spiced Zobo Drink</strong>
+                    <span>Hibiscus, ginger &amp; fresh citrus</span>
+                  </div>
+                  <span class="btn-price-tag">+$5</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Visual Plate Card & Summary -->
+          <div class="builder-summary-col reveal-on-scroll stagger-2">
+            <div class="live-plate-card">
+              <div class="plate-image-frame">
+                <img src="./images/feast_plate.jpg" alt="Curated Nigerian luxury feast plate with jollof, dodo, asun and efo riro" width="700" height="525" />
+                <div class="plate-tasting-badge" id="plate-tag">Signature Owambe Composition</div>
+              </div>
+
+              <div class="plate-spec-body">
+                <div class="plate-title-row">
+                  <div>
+                    <span class="plate-kicker">CUSTOM TIER CONFIGURATION</span>
+                    <h3 class="plate-title" id="plate-summary-title">Owambe Royal Supper Plate</h3>
+                  </div>
+                  <div class="plate-total-price" id="plate-total-price">$31.00</div>
+                </div>
+
+                <ul class="plate-ingredients-list" id="plate-ingredients-list">
+                  <li><strong>Foundation:</strong> <span id="summary-base">Firewood Party Jollof</span></li>
+                  <li><strong>Soup/Stew:</strong> <span id="summary-soup">Stoneground Egusi Soup</span></li>
+                  <li><strong>Grill Protein:</strong> <span id="summary-protein">Flame-Charred Peppered Goat (Asun)</span></li>
+                  <li><strong>Sides &amp; Extras:</strong> <span id="summary-sides">Caramelized Dodo</span></li>
+                </ul>
+
+                <div class="spice-tolerance-indicator">
+                  <span class="spice-indicator-label">Tasting Profile:</span>
+                  <span class="spice-indicator-value" id="plate-taste-notes">Smoky firewood rice, stoneground melon seed richness, and hot scotch bonnet goat meat.</span>
+                </div>
+
+                <button class="btn-primary" id="btn-add-custom-plate" style="width: 100%; justify-content: center; margin-top: 1.25rem;">
+                  <span>+ Pack Plate into Feast Box</span>
+                  <span class="price-bubble" id="plate-cta-price">$31.00</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Daily Búkà Menu Section with Interactive Pepper Heat Index -->
+    <section class="section-container" id="menu">
+      <div class="wrap">
+        <div class="section-header reveal-on-scroll">
+          <div>
+            <div class="section-tag">TONIGHT'S BÚKÀ SPECIALS</div>
+            <h2 class="section-title">Cooked to Order from the Hearth</h2>
+          </div>
+          
+          <div class="menu-controls-wrap">
+            <!-- Heat Selector -->
+            <div class="heat-meter-box">
+              <span class="heat-meter-title">🌶️ Kitchen Heat Dial:</span>
+              <div class="heat-pill-group" id="heat-dial" role="radiogroup">
+                <button type="button" class="heat-btn" data-heat="mild" title="Sweet bell pepper & gentle warmth">Mild</button>
+                <button type="button" class="heat-btn active" data-heat="classic" title="Classic balanced scotch bonnet">Búkà Heat</button>
+                <button type="button" class="heat-btn" data-heat="party" title="Saturday Owambe charred scotch bonnet">Owambe Fire</button>
+              </div>
+            </div>
+
+            <!-- Category Filter -->
+            <div class="menu-filter-bar" role="tablist">
+              <button class="filter-btn active" data-filter="all">Full Búkà</button>
+              <button class="filter-btn" data-filter="jollof">Party Jollof</button>
+              <button class="filter-btn" data-filter="soups">Soups &amp; Swallows</button>
+              <button class="filter-btn" data-filter="suya">Charcoal Suya</button>
+              <button class="filter-btn" data-filter="sides">Sides &amp; Coolers</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-grid" id="menu-items-grid">
+          <!-- Item 1 -->
+          <article class="dish-card reveal-on-scroll stagger-1" data-category="jollof">
+            <div class="dish-meta">
+              <span class="dish-category">Signature Rice</span>
+              <span class="dish-price">$24</span>
+            </div>
+            <h3 class="dish-title">Smoky Firewood Party Jollof</h3>
+            <p class="dish-desc">
+              Long-grain parboiled rice cooked in reduced fire-roasted scotch bonnets, tatashe peppers, and smoked bay leaves. Served with chargrilled peppered chicken and caramelized dodo (fried plantains).
+            </p>
+            <div class="dish-provenance">Cast-Iron Bottom Pot Char · Sweet Ripe Plantains</div>
+            <div class="dish-card-footer">
+              <span class="spice-badge" data-heat-badge>🌶️ Balanced Búkà Heat</span>
+              <button class="btn-add-dish" data-id="1" data-name="Smoky Party Jollof & Chicken" data-price="24">
+                <span>+ Add to Box</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Item 2 -->
+          <article class="dish-card reveal-on-scroll stagger-2" data-category="soups">
+            <div class="dish-meta">
+              <span class="dish-category">Soup &amp; Swallow</span>
+              <span class="dish-price">$26</span>
+            </div>
+            <h3 class="dish-title">Slow-Simmered Egusi &amp; Pounded Yam</h3>
+            <p class="dish-desc">
+              Stoneground melon seeds simmered in bleached palm oil stock with wild smoked catfish, tender braised beef brisket, dried crayfish, and uziza leaf. Served with hand-pounded yam (iyan).
+            </p>
+            <div class="dish-provenance">Benue State Melon Seeds · Wild Smoked Catfish</div>
+            <div class="dish-card-footer">
+              <span class="spice-badge" data-heat-badge>🌶️ Rich Umami Spice</span>
+              <button class="btn-add-dish" data-id="2" data-name="Egusi Soup & Pounded Yam" data-price="26">
+                <span>+ Add to Box</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Item 3 -->
+          <article class="dish-card reveal-on-scroll stagger-3" data-category="suya">
+            <div class="dish-meta">
+              <span class="dish-category">Charcoal Grill</span>
+              <span class="dish-price">$22</span>
+            </div>
+            <h3 class="dish-title">Lagos Street Suya Platter</h3>
+            <p class="dish-desc">
+              Thinly sliced prime beef flank crusted in authentic roasted kuli-kuli peanut spice, ginger, and grains of paradise. Seared over open coals and served with shaved red onions, vine tomatoes, and fresh lime.
+            </p>
+            <div class="dish-provenance">Hausa Yaji Spice Master · Prime Flank Steak</div>
+            <div class="dish-card-footer">
+              <span class="spice-badge" data-heat-badge>🌶️ Peppery Coal Bark</span>
+              <button class="btn-add-dish" data-id="3" data-name="Lagos Beef Suya Platter" data-price="22">
+                <span>+ Add to Box</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Item 4 -->
+          <article class="dish-card reveal-on-scroll stagger-1" data-category="jollof">
+            <div class="dish-meta">
+              <span class="dish-category">Heritage Rice</span>
+              <span class="dish-price">$25</span>
+            </div>
+            <h3 class="dish-title">Ayamase (Designer Ofada Stew)</h3>
+            <p class="dish-desc">
+              Indigenous unpolished Ofada brown rice topped with deep green bleached palm oil stew made with roasted green habaneros, fermented locust beans (irú), tender braised meats, and a boiled egg.
+            </p>
+            <div class="dish-provenance">Ogun State Indigenous Ofada · Fermented Irú</div>
+            <div class="dish-card-footer">
+              <span class="spice-badge" data-heat-badge>🌶️ Green Habanero Punch</span>
+              <button class="btn-add-dish" data-id="4" data-name="Ayamase Ofada Rice Bowl" data-price="25">
+                <span>+ Add to Box</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Item 5 -->
+          <article class="dish-card reveal-on-scroll stagger-2" data-category="sides">
+            <div class="dish-meta">
+              <span class="dish-category">Búkà Comfort</span>
+              <span class="dish-price">$18</span>
+            </div>
+            <h3 class="dish-title">Ewa Aganyin &amp; Warm Agege Bread</h3>
+            <p class="dish-desc">
+              Silky slow-cooked brown honey beans mashed until buttery, drizzled with fiery slow-caramelized palm oil chili-onion sauce, paired with warm thick-sliced sweet Agege bakery bread.
+            </p>
+            <div class="dish-provenance">Oloyin Honey Beans · Fresh Bakery Agege Loaf</div>
+            <div class="dish-card-footer">
+              <span class="spice-badge" data-heat-badge>🌶️ Caramelized Aganyin</span>
+              <button class="btn-add-dish" data-id="5" data-name="Ewa Aganyin & Agege Loaf" data-price="18">
+                <span>+ Add to Box</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Item 6 -->
+          <article class="dish-card reveal-on-scroll stagger-3" data-category="sides">
+            <div class="dish-meta">
+              <span class="dish-category">Cold Press Cooler</span>
+              <span class="dish-price">$8</span>
+            </div>
+            <h3 class="dish-title">Chilled Spiced Zobo &amp; Citrus</h3>
+            <p class="dish-desc">
+              Cold-steeped Nigerian hibiscus calyces brewed with fresh crushed ginger root, cloves, sweet pineapple juice, citrus peels, and fresh mint leaves. Naturally sweetened with wildflower honey.
+            </p>
+            <div class="dish-provenance">Kano Hibiscus Flowers · Cold-Pressed Ginger</div>
+            <div class="dish-card-footer">
+              <span class="spice-badge" style="background: rgba(21, 128, 61, 0.08); color: var(--p-accent); border-color: rgba(21, 128, 61, 0.2);">🌿 Cold Pressed &amp; Refreshing</span>
+              <button class="btn-add-dish" data-id="6" data-name="Chilled Spiced Zobo Cooler" data-price="8">
+                <span>+ Add to Box</span>
+              </button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- UNIQUE FEATURE 2: The 3-Tier Vacuum Tiffin System & Thermal Telemetry -->
+    <section class="section-container" id="tiffin" style="background: var(--p-surface-dark); color: #ffffff;">
+      <div class="wrap">
+        <div class="tiffin-split-grid">
+          <div class="tiffin-visual reveal-on-scroll">
+            <div class="photo-frame dark-photo-frame">
+              <img src="./images/tiffin_canister.jpg" alt="Double-walled stainless steel and brass latch food delivery tiffin canister" width="800" height="600" />
+            </div>
+          </div>
+
+          <div class="tiffin-content reveal-on-scroll stagger-2">
+            <div class="section-tag" style="color: var(--p-gold);">ZERO-PLASTIC REVOLUTION</div>
+            <h2 class="section-title" style="color: #ffffff;">The 3-Tier Insulated Brass Tiffin Canister</h2>
+            <p style="color: #d6cfc7; font-size: 1.0625rem; line-height: 1.7; margin-bottom: 1.75rem;">
+              Disposable plastic containers destroy the soul of hot West African food — making plantains soggy and letting precious palm oil cool into film. We deliver every supper in heavy triple-latched stainless steel tiffins with brass handles.
+            </p>
+
+            <div class="tiffin-tiers-list">
+              <div class="tiffin-tier-item">
+                <div class="tier-number">Tier 01</div>
+                <div>
+                  <h4 class="tier-title">Base: Steaming Firewood Rice &amp; Swallows</h4>
+                  <p class="tier-desc">Maintains high thermal mass at the bottom, keeping jollof grains separate, dry, and fragrant.</p>
+                </div>
+              </div>
+              <div class="tiffin-tier-item">
+                <div class="tier-number">Tier 02</div>
+                <div>
+                  <h4 class="tier-title">Core: Deep Stoneground Egusi &amp; Efo Riro</h4>
+                  <p class="tier-desc">Airtight silicone seal prevents cross-spill and retains hot steam at over 80°C.</p>
+                </div>
+              </div>
+              <div class="tiffin-tier-item">
+                <div class="tier-number">Tier 03</div>
+                <div>
+                  <h4 class="tier-title">Crown: Charcoal Suya &amp; Caramelized Dodo</h4>
+                  <p class="tier-desc">Separated from moisture so the kuli-kuli bark stays crisp and plantains stay tender.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="tiffin-return-promise">
+              <div class="return-icon">↺</div>
+              <div class="return-text">
+                <strong>Effortless Return Protocol:</strong> Enjoy your meal directly from the canisters. Next day, our electric courier collects the rinsed tiffins, or keep them for home feasts for a small refundable deposit.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visual Split Section: Egusi & Swallows -->
+    <section class="split-section" id="egusi">
+      <div class="wrap">
+        <div class="split-grid">
+          <div class="split-visual reveal-on-scroll">
+            <div class="photo-frame">
+              <img src="./images/egusi_soup.jpg" alt="Rich Nigerian Egusi soup with braised beef and pounded yam" width="800" height="600" />
+            </div>
+          </div>
+          <div class="split-content reveal-on-scroll stagger-2">
+            <div class="section-tag">HERITAGE SOUPS</div>
+            <h2 class="section-title">The Depth of Stoneground Egusi</h2>
+            <p class="hero-description">
+              Our egusi soup is cooked with unpeeled organic melon seeds toasted and ground by hand, folded into a reduction of smoked catfish stock, dried crayfish, and palm fruit oil. Paired with silky, elastic pounded yam (iyan) made from premium white yam tubers.
+            </p>
+            <ul class="farm-list">
+              <li class="farm-item">
+                <div>
+                  <div class="farm-name">Hand-Pounded Iyan</div>
+                  <div class="farm-produce">Boiled white yam tubers, pounded velvety smooth</div>
+                </div>
+                <div class="farm-dist">100% Yam</div>
+              </li>
+              <li class="farm-item">
+                <div>
+                  <div class="farm-name">Dried Crayfish &amp; Smoked Catfish</div>
+                  <div class="farm-produce">Wild river-caught, smoked over hardwood coals</div>
+                </div>
+                <div class="farm-dist">Wild-Smoked</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visual Split Section: Lagos Suya & Charcoal Masters -->
+    <section class="split-section" id="suya" style="background: var(--p-surface);">
+      <div class="wrap">
+        <div class="split-grid reverse">
+          <div class="split-visual reveal-on-scroll">
+            <div class="photo-frame">
+              <img src="./images/suya_skewers.jpg" alt="Grilled Lagos street beef suya skewers with red onions" width="800" height="600" />
+            </div>
+          </div>
+          <div class="split-content reveal-on-scroll stagger-2">
+            <div class="section-tag">OPEN COAL FLAME</div>
+            <h2 class="section-title">Authentic Charcoal Street Suya</h2>
+            <p class="hero-description">
+              Prepared by master Mai Suya grillers. We pound whole roasted peanut cakes into coarse kuli-kuli flour, blended with alligator pepper, dried ginger, and garlic. Seared over glowing hardwood charcoal until smoky and deeply spiced.
+            </p>
+            <ul class="farm-list">
+              <li class="farm-item">
+                <div>
+                  <div class="farm-name">Northern Yaji Spice</div>
+                  <div class="farm-produce">Defatted roasted peanut pressings, dried chili &amp; ginger</div>
+                </div>
+                <div class="farm-dist">Authentic</div>
+              </li>
+              <li class="farm-item">
+                <div>
+                  <div class="farm-name">Hardwood Charcoal Bark</div>
+                  <div class="farm-produce">Seared at 600°F for caramelized outer crust and juicy interior</div>
+                </div>
+                <div class="farm-dist">Coal-Fired</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UNIQUE FEATURE 3: Patron Voices & Culinary Critics -->
+    <section class="section-container" id="acclaim">
+      <div class="wrap">
+        <div class="section-header reveal-on-scroll">
+          <div>
+            <div class="section-tag">VOICES FROM THE TABLE</div>
+            <h2 class="section-title">The Búkà Standard, Verified</h2>
+          </div>
+        </div>
+
+        <div class="critics-grid">
+          <div class="critic-card reveal-on-scroll stagger-1">
+            <div class="critic-stars">★★★★★</div>
+            <p class="critic-quote">
+              "The party jollof tastes like an authentic Saturday wedding in Ikeja in 1998. Zero artificial seasoning, pure firewood smoke reduction, and genuine cast-iron bottom char."
+            </p>
+            <div class="critic-author">
+              <strong>Femi Adebayo</strong>
+              <span>West African Culinary Chronicle</span>
+            </div>
+          </div>
+
+          <div class="critic-card reveal-on-scroll stagger-2">
+            <div class="critic-stars">★★★★★</div>
+            <p class="critic-quote">
+              "Delivering egusi soup boiling hot in stainless tiffins is a game-changer. The pounded yam arrived cloud-soft with zero condensation sogginess. Unmatched craft."
+            </p>
+            <div class="critic-author">
+              <strong>Dr. Chioma Nnadi</strong>
+              <span>Diaspora Gastronomy Guild</span>
+            </div>
+          </div>
+
+          <div class="critic-card reveal-on-scroll stagger-3">
+            <div class="critic-stars">★★★★★</div>
+            <p class="critic-quote">
+              "Their Mai Suya respects the ancient Kano kuli-kuli recipe. Real alligator pepper bite, charred beef edges, and crunchy red onions. It’s what midnight Lagos tastes like."
+            </p>
+            <div class="critic-author">
+              <strong>Ibrahim Garba</strong>
+              <span>Suya &amp; Hearth Connoisseur</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Weekly Feast Box Planner -->
+    <section class="section-container" id="planner" style="background: var(--p-surface);">
+      <div class="wrap">
+        <div class="section-header reveal-on-scroll">
+          <div>
+            <div class="section-tag">FAMILY &amp; OWAMBE FEASTS</div>
+            <h2 class="section-title">Configure Your Weekly Feast Plan</h2>
+            <p class="hero-description" style="margin-bottom: 0;">
+              Choose how many people are dining and how many evenings a week you want authentic Nigerian soul suppers delivered warm.
+            </p>
+          </div>
+        </div>
+
+        <div class="planner-card reveal-on-scroll stagger-1">
+          <div class="planner-inputs">
+            <div class="planner-group">
+              <span class="planner-label">Dining Party Size</span>
+              <div class="btn-pill-group" id="group-diners" role="radiogroup">
+                <button type="button" class="pill-option-btn active" data-diners="2">Solo Chop (1–2)</button>
+                <button type="button" class="pill-option-btn" data-diners="4">Family (3–4)</button>
+                <button type="button" class="pill-option-btn" data-diners="6">Owambe Feast (5+)</button>
+              </div>
+            </div>
+
+            <div class="planner-group">
+              <span class="planner-label">Deliveries Per Week</span>
+              <div class="btn-pill-group" id="group-nights" role="radiogroup">
+                <button type="button" class="pill-option-btn active" data-nights="3">3 Evenings</button>
+                <button type="button" class="pill-option-btn" data-nights="4">4 Evenings</button>
+                <button type="button" class="pill-option-btn" data-nights="5">5 Evenings</button>
+              </div>
+            </div>
+
+            <div class="planner-group">
+              <span class="planner-label">Heat Preference</span>
+              <div class="btn-pill-group" id="group-spice" role="radiogroup">
+                <button type="button" class="pill-option-btn active" data-spice="lagos">Authentic Lagos Fire (Hot)</button>
+                <button type="button" class="pill-option-btn" data-spice="mild">Comfort Heat (Mild Scotch Bonnet)</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="planner-summary-panel">
+            <div>
+              <div class="summary-price-box">
+                <div class="summary-per-serving" id="summary-price">$18<span>/ portion</span></div>
+              </div>
+              <ul class="summary-rows">
+                <li class="summary-row">
+                  <span id="summary-meals-count">6 portions per week</span>
+                  <span id="summary-meals-subtotal">$108.00</span>
+                </li>
+                <li class="summary-row">
+                  <span>3-Tier Brass Tiffin Exchange</span>
+                  <span style="color: var(--p-action); font-weight: 600;">Free / Included</span>
+                </li>
+                <li class="summary-row">
+                  <span>Golden Puff-Puff Platter</span>
+                  <span style="color: var(--p-accent); font-weight: 600;">On Us</span>
+                </li>
+                <li class="summary-row total">
+                  <span>Weekly Investment</span>
+                  <span id="summary-weekly-total">$108.00</span>
+                </li>
+              </ul>
+            </div>
+
+            <button class="btn-primary" id="btn-lock-plan" style="width: 100%; justify-content: center; margin-top: 2rem;">
+              Start Weekly Nigerian Feast Plan
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Sticky Mobile Bottom Action Bar (Instant Phone Ordering) -->
+  <aside class="mobile-bottom-bar" id="mobile-bottom-bar" aria-label="Mobile Quick Checkout">
+    <div class="mobile-bottom-inner">
+      <div class="mobile-status-text">
+        <span class="live-dot-small"></span>
+        <span>⚡ Courier wait:</span> <strong>28 mins</strong>
+      </div>
+      <button class="btn-mobile-order" id="btn-mobile-order-open">
+        <span>Feast Box (<span id="mobile-bag-count">0</span>)</span>
+        <span>·</span>
+        <span id="mobile-bag-subtotal">$0</span>
+        <span>→</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Slide-Over Feast Box / Cart Drawer -->
+  <div class="cart-drawer-backdrop" id="cart-drawer-backdrop" aria-hidden="true">
+    <div class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title-text">
+      <div class="cart-header">
+        <div>
+          <h3 class="cart-title" id="cart-title-text">Tonight's Feast Box</h3>
+          <span class="cart-subtitle">Sealed in Insulated Tiffins</span>
+        </div>
+        <button class="btn-close-cart" id="btn-close-cart" aria-label="Close box">×</button>
+      </div>
+
+      <div class="cart-body" id="cart-body">
+        <div class="cart-empty-msg" id="cart-empty-msg">
+          <p>Your feast box is empty.</p>
+          <span>Curate a custom Owambe plate above or choose dishes from our daily firewood menu.</span>
+        </div>
+        <div id="cart-items-list"></div>
+      </div>
+
+      <div class="cart-footer">
+        <div class="cart-subtotal-row">
+          <span>Total Supper</span>
+          <span id="cart-subtotal">$0.00</span>
+        </div>
+        <button class="btn-primary" id="btn-checkout" style="width: 100%; justify-content: center;">
+          Dispatch Tiffin to My Address
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-inner">
+        <div>
+          <a href="#" class="brand" style="color: #ffffff;">
+            <svg class="brand-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 2C8.268 2 2 8.268 2 16s6.268 14 14 14 14-6.268 14-14S23.732 2 16 2Z" fill="#ffffff" fill-opacity="0.12"/>
+              <path d="M16 6v20M8 12c4 0 8 4 8 4s4-4 8-4M9 20c3.5 0 7 2 7 2s3.5-2 7-2" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span class="brand-name">Búkà <span>&amp;</span> Palm</span>
+          </a>
+          <p class="footer-brand-desc">
+            Authentic Nigerian soul suppers and street delicacies. Cooked fresh in seasoned cast iron and dispatched boiling hot in zero-waste insulated tiffins.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-heading">Chop Menu</div>
+          <ul class="footer-links">
+            <li><a href="#custom-plate">Custom Owambe Plate</a></li>
+            <li><a href="#menu">Party Jollof Rice</a></li>
+            <li><a href="#egusi">Egusi &amp; Pounded Yam</a></li>
+            <li><a href="#suya">Lagos Street Suya</a></li>
+            <li><a href="#planner">Owambe Feast Boxes</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-heading">Kitchens &amp; Zones</div>
+          <ul class="footer-links">
+            <li><a href="#">Victoria Island Hearth Hub</a></li>
+            <li><a href="#">Lekki Phase 1 Kitchen</a></li>
+            <li><a href="#">Ikeja Dispatch Centre</a></li>
+            <li><a href="#">Delivery Radius Telemetry</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-heading">Care &amp; Quality</div>
+          <ul class="footer-links">
+            <li><a href="#tiffin">Hot-Tiffin Return Protocol</a></li>
+            <li><a href="#">Peanut &amp; Allergen Guide</a></li>
+            <li><a href="#">Locust Bean (Irú) Sourcing</a></li>
+            <li><a href="#">Contact Búkà Ops</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>Built with taste-skill 2.5 standards · MIT License · © 2026 Búkà &amp; Palm Kitchens Ltd.</div>
+        <div>Kitchen Hearth: 12:00 PM – 10:30 PM Daily · Electric Courier Fleet</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic -->
+</body>
+</html>
